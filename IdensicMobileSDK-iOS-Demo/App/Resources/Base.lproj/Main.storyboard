@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mOf-5f-73s">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="5OR-H3-IeC">
+            <objects>
+                <navigationController id="mOf-5f-73s" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="12P-Ap-BRI" customClass="NavigationBar" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.16063469650000001" green="0.185126394" blue="0.57001763579999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" red="0.1700217426" green="0.18641465900000001" blue="0.47803229089999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PUh-rj-SkQ" kind="relationship" relationship="rootViewController" id="zqf-od-PiM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="few-6f-EJn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014" y="-34"/>
+        </scene>
+        <!--LoginVC-->
+        <scene sceneID="QA8-J2-VYG">
+            <objects>
+                <tableViewController storyboardIdentifier="LoginVC" title="LoginVC" id="PUh-rj-SkQ" customClass="LoginVC" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" id="7ug-1i-IaG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="" id="shU-d8-y6r">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="140" id="H0A-oQ-MNF">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H0A-oQ-MNF" id="GcL-Mj-uHd">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oi1-cd-bPs">
+                                                    <rect key="frame" x="20" y="8" width="280" height="116"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="125" id="JiV-VM-pAq"/>
+                                                        <constraint firstAttribute="width" constant="280" id="eiC-By-2df"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Oi1-cd-bPs" firstAttribute="centerX" secondItem="GcL-Mj-uHd" secondAttribute="centerX" id="C7X-DX-CDj"/>
+                                                <constraint firstItem="Oi1-cd-bPs" firstAttribute="top" secondItem="GcL-Mj-uHd" secondAttribute="top" constant="8" id="EIn-GM-w75"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Oi1-cd-bPs" secondAttribute="bottom" constant="16" id="XOm-Kp-PzB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="yN9-6M-gZX">
+                                        <rect key="frame" x="0.0" y="168" width="320" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yN9-6M-gZX" id="Gx7-5x-gPu">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYk-1c-seu" customClass="Label" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                                    <rect key="frame" x="36" y="21.5" width="190.5" height="55.5"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Welcome,">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.16063469648361206" green="0.18512639403343201" blue="0.57001763582229614" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="26" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment>
+                                                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                            <attributes>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" size="36" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="log into your account">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.16063469648361206" green="0.18512639403343201" blue="0.57001763582229614" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="21" name="HelveticaNeue-Light"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qYk-1c-seu" firstAttribute="leading" secondItem="Gx7-5x-gPu" secondAttribute="leading" constant="36" id="TMc-j2-fRN"/>
+                                                <constraint firstItem="qYk-1c-seu" firstAttribute="bottom" secondItem="Gx7-5x-gPu" secondAttribute="bottomMargin" constant="-12" id="Xqg-hB-X7n"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qYk-1c-seu" secondAttribute="trailing" constant="36" id="odX-rY-PKS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <segue destination="VXM-Pf-24f" kind="show" id="QsQ-B7-vwG"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="232" id="TIw-St-0ge">
+                                        <rect key="frame" x="0.0" y="268" width="320" height="232"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TIw-St-0ge" id="gUb-fw-Js2">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="232"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rOd-93-3pp">
+                                                    <rect key="frame" x="20" y="0.0" width="280" height="212"/>
+                                                    <subviews>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Environment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PZ7-jt-sgJ" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="280" height="32"/>
+                                                            <color key="backgroundColor" red="0.96056312320000004" green="0.96470874549999996" blue="0.96871882679999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="32" id="t5Q-LY-Act"/>
+                                                            </constraints>
+                                                            <color key="textColor" red="0.41176470588235292" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="selectEnvironment:" destination="PUh-rj-SkQ" eventType="touchDown" id="uVX-SU-Q2e"/>
+                                                            </connections>
+                                                        </textField>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Gdw-Z0-6z8" customClass="TextField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="42" width="280" height="50"/>
+                                                            <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="czK-x7-20E"/>
+                                                            </constraints>
+                                                            <color key="textColor" red="0.41176470588235292" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="username"/>
+                                                        </textField>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OtC-PZ-Aht" customClass="TextField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="102" width="280" height="50"/>
+                                                            <color key="backgroundColor" red="0.96056312320000004" green="0.96470874549999996" blue="0.96871882679999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="86E-iP-uX0"/>
+                                                            </constraints>
+                                                            <color key="textColor" red="0.41161170600000002" green="0.41572976109999998" blue="0.41567909720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                            <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                                                        </textField>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxP-ZR-Cmc" customClass="Button" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="162" width="280" height="50"/>
+                                                            <color key="backgroundColor" red="0.16078431372549018" green="0.18431372549019609" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="h70-GH-lIM"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Log in"/>
+                                                            <connections>
+                                                                <action selector="logIn:" destination="PUh-rj-SkQ" eventType="touchUpInside" id="VdT-XY-dUI"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rOd-93-3pp" firstAttribute="leading" secondItem="gUb-fw-Js2" secondAttribute="leading" constant="20" id="CKS-IP-cXq"/>
+                                                <constraint firstAttribute="trailing" secondItem="rOd-93-3pp" secondAttribute="trailing" constant="20" id="gLI-w8-NhM"/>
+                                                <constraint firstItem="rOd-93-3pp" firstAttribute="centerY" secondItem="gUb-fw-Js2" secondAttribute="centerY" constant="-10" id="xOs-BM-pHi"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="PUh-rj-SkQ" id="LOi-5Z-umi"/>
+                            <outlet property="delegate" destination="PUh-rj-SkQ" id="gOG-H9-iUI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="oau-du-NZI">
+                        <barButtonItem key="backBarButtonItem" title="Login" id="ymf-JQ-1tY"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="environmentField" destination="PZ7-jt-sgJ" id="ypy-l5-A8H"/>
+                        <outlet property="loginButton" destination="RxP-ZR-Cmc" id="RWI-83-9PB"/>
+                        <outlet property="passwordField" destination="OtC-PZ-Aht" id="QyV-DY-jwu"/>
+                        <outlet property="usernameField" destination="Gdw-Z0-6z8" id="E2n-P6-wAx"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XxO-12-WRs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1801.875" y="-35.91549295774648"/>
+        </scene>
+        <!--DemoVC-->
+        <scene sceneID="riD-aQ-2ES">
+            <objects>
+                <viewController storyboardIdentifier="DemoVC" title="DemoVC" id="VXM-Pf-24f" customClass="DemoVC" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vbf-Dw-HW1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="249" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="RCA-Ei-aGh">
+                                <rect key="frame" x="20" y="8" width="280" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="M7m-aN-G6g"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="125" id="Pse-bX-WVn"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Eph-XK-bhj">
+                                <rect key="frame" x="20" y="248" width="280" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Not created yet" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K3X-lI-tHC" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="JrD-rp-Fmu"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.41161170600000002" green="0.41572976109999998" blue="0.41567909720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="showApplicantMenu:" destination="VXM-Pf-24f" eventType="touchDown" id="EyR-Hc-cbp"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkY-6r-JwF" customClass="Button" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="60" width="280" height="50"/>
+                                        <color key="backgroundColor" red="0.16063469650000001" green="0.185126394" blue="0.57001763579999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="KEb-2R-hzz"/>
+                                        </constraints>
+                                        <state key="normal" title="Make new user"/>
+                                        <connections>
+                                            <action selector="makeNewUser:" destination="VXM-Pf-24f" eventType="touchUpInside" id="HDb-rj-5FB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hkd-4Y-S1Y">
+                                <rect key="frame" x="20" y="398" width="280" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="System Language" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NLn-8x-jil" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Mhh-s5-Grs"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.41161170600000002" green="0.41572976109999998" blue="0.41567909720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="selectLang:" destination="VXM-Pf-24f" eventType="touchDown" id="zW3-wQ-K6x"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfh-BN-GbJ" customClass="Button" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="60" width="280" height="50"/>
+                                        <color key="backgroundColor" red="0.16063469650000001" green="0.185126394" blue="0.57001763579999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="5X4-TH-f1Y"/>
+                                        </constraints>
+                                        <state key="normal" title="Launch Identity Verification"/>
+                                        <connections>
+                                            <action selector="launchVerification:" destination="VXM-Pf-24f" eventType="touchUpInside" id="INZ-mt-pLM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="RCA-Ei-aGh" firstAttribute="centerX" secondItem="vbf-Dw-HW1" secondAttribute="centerX" id="2dO-bR-OtA"/>
+                            <constraint firstItem="RCA-Ei-aGh" firstAttribute="top" secondItem="AKA-E1-3MN" secondAttribute="top" constant="8" id="Osv-1w-NuM"/>
+                            <constraint firstItem="Eph-XK-bhj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RCA-Ei-aGh" secondAttribute="bottom" priority="250" constant="32" id="SKf-V4-8vq"/>
+                            <constraint firstItem="hkd-4Y-S1Y" firstAttribute="top" secondItem="Eph-XK-bhj" secondAttribute="bottom" constant="40" id="TcO-W8-RYy"/>
+                            <constraint firstItem="AKA-E1-3MN" firstAttribute="trailing" secondItem="hkd-4Y-S1Y" secondAttribute="trailing" constant="20" id="bPM-V3-Xhz"/>
+                            <constraint firstItem="Eph-XK-bhj" firstAttribute="leading" secondItem="AKA-E1-3MN" secondAttribute="leading" constant="20" id="cFE-XV-sVu"/>
+                            <constraint firstItem="Eph-XK-bhj" firstAttribute="top" relation="lessThanOrEqual" secondItem="RCA-Ei-aGh" secondAttribute="bottom" priority="250" constant="110" id="hQX-Ey-QEf"/>
+                            <constraint firstItem="Eph-XK-bhj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RCA-Ei-aGh" secondAttribute="bottom" constant="110" id="mIa-FG-Go8"/>
+                            <constraint firstItem="AKA-E1-3MN" firstAttribute="trailing" secondItem="Eph-XK-bhj" secondAttribute="trailing" constant="20" id="ozb-rm-SNq"/>
+                            <constraint firstItem="hkd-4Y-S1Y" firstAttribute="leading" secondItem="AKA-E1-3MN" secondAttribute="leading" constant="20" id="vcM-kp-eXz"/>
+                            <constraint firstItem="hkd-4Y-S1Y" firstAttribute="bottom" secondItem="AKA-E1-3MN" secondAttribute="bottom" constant="-16" id="zQC-XX-KfM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="AKA-E1-3MN"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mIa-FG-Go8"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="dTr-bo-bse"/>
+                    <connections>
+                        <outlet property="langDropdown" destination="NLn-8x-jil" id="mJZ-kd-hVy"/>
+                        <outlet property="userButton" destination="jkY-6r-JwF" id="IFo-WA-PGR"/>
+                        <outlet property="userDropdown" destination="K3X-lI-tHC" id="An8-oF-OEW"/>
+                        <outlet property="verificationButton" destination="Rfh-BN-GbJ" id="iz3-lw-10n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UBC-N7-VOG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2588" y="-35"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo" width="280" height="180"/>
+    </resources>
+</document>
