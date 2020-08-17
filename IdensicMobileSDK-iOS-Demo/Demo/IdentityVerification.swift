@@ -112,7 +112,7 @@ struct IdentityVerification {
         
         // If `dismissHandler` is assigned, it's up to you to dismiss the `mainVC` controller.
         sdk.dismissHandler { (sdk, mainVC) in
-            mainVC.dismiss(animated: true, completion: nil)
+            mainVC.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
         
