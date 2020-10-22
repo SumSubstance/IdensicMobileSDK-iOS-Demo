@@ -12,4 +12,5 @@ struct YourUser {
     
     var userId: String
     var flowName: String?
+    var externalActionId: String?
 }

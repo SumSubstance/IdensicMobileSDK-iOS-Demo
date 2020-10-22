@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mOf-5f-73s">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mOf-5f-73s">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -37,7 +38,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" id="7ug-1i-IaG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="" id="shU-d8-y6r">
                                 <cells>
@@ -216,7 +217,7 @@ Cg
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Eph-XK-bhj">
-                                <rect key="frame" x="20" y="248" width="280" height="110"/>
+                                <rect key="frame" x="20" y="188" width="280" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Not created yet" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K3X-lI-tHC" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
@@ -245,10 +246,23 @@ Cg
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hkd-4Y-S1Y">
-                                <rect key="frame" x="20" y="398" width="280" height="110"/>
+                                <rect key="frame" x="20" y="338" width="280" height="170"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="System Language" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NLn-8x-jil" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Applicant Flow" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B4C-3m-OJ6" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="cdz-Q9-huf"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.41161170600000002" green="0.41572976109999998" blue="0.41567909720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="selectFlow:" destination="VXM-Pf-24f" eventType="touchDown" id="0nq-Ag-fCa"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="System Language" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NLn-8x-jil" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="60" width="280" height="50"/>
                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Mhh-s5-Grs"/>
@@ -261,7 +275,7 @@ Cg
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfh-BN-GbJ" customClass="Button" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="60" width="280" height="50"/>
+                                        <rect key="frame" x="0.0" y="120" width="280" height="50"/>
                                         <color key="backgroundColor" red="0.16063469650000001" green="0.185126394" blue="0.57001763579999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="5X4-TH-f1Y"/>
@@ -274,7 +288,8 @@ Cg
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="AKA-E1-3MN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RCA-Ei-aGh" firstAttribute="centerX" secondItem="vbf-Dw-HW1" secondAttribute="centerX" id="2dO-bR-OtA"/>
                             <constraint firstItem="RCA-Ei-aGh" firstAttribute="top" secondItem="AKA-E1-3MN" secondAttribute="top" constant="8" id="Osv-1w-NuM"/>
@@ -288,7 +303,6 @@ Cg
                             <constraint firstItem="hkd-4Y-S1Y" firstAttribute="leading" secondItem="AKA-E1-3MN" secondAttribute="leading" constant="20" id="vcM-kp-eXz"/>
                             <constraint firstItem="hkd-4Y-S1Y" firstAttribute="bottom" secondItem="AKA-E1-3MN" secondAttribute="bottom" constant="-16" id="zQC-XX-KfM"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="AKA-E1-3MN"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="mIa-FG-Go8"/>
@@ -297,6 +311,7 @@ Cg
                     </view>
                     <navigationItem key="navigationItem" id="dTr-bo-bse"/>
                     <connections>
+                        <outlet property="flowDropdown" destination="B4C-3m-OJ6" id="ffp-G5-XaQ"/>
                         <outlet property="langDropdown" destination="NLn-8x-jil" id="mJZ-kd-hVy"/>
                         <outlet property="userButton" destination="jkY-6r-JwF" id="IFo-WA-PGR"/>
                         <outlet property="userDropdown" destination="K3X-lI-tHC" id="An8-oF-OEW"/>
@@ -310,5 +325,8 @@ Cg
     </scenes>
     <resources>
         <image name="logo" width="280" height="180"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

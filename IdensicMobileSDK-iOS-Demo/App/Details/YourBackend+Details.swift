@@ -12,6 +12,12 @@ typealias FlowName = String
 typealias AccessToken = String
 typealias BearerToken = String
 
+struct Flow: Stringable {
+    var name: FlowName
+    var isAction: Bool
+    var toString: String? { return name }
+}
+
 extension YourBackend {
     
     static var bearerToken: BearerToken?
@@ -35,7 +41,13 @@ extension YourBackend {
             return
         }
         
-        let path = "/resources/accessTokens?userId=\(userId)&ttlInSecs=600"
+        let path: String
+        
+        if let externalActionId = user?.externalActionId {
+            path = "/resources/accessTokens?userId=\(userId.urlQueryEncoded)&externalActionId=\(externalActionId.urlQueryEncoded)&ttlInSecs=600"
+        } else {
+            path = "/resources/accessTokens?userId=\(userId.urlQueryEncoded)&ttlInSecs=600"
+        }
         
         post(path) { (error, json, statusCode) in
                         
@@ -87,7 +99,7 @@ extension YourBackend {
         }
     }
     
-    static func getApplicantFlows(onComplete: @escaping (Error?, [FlowName]?) -> Void) {
+    static func getApplicantFlows(forNewUser: Bool, onComplete: @escaping (Error?, [Flow]?) -> Void) {
         
         get("/resources/sdkIntegrations/flows") { (error, json, statusCode) in
             
@@ -101,13 +113,18 @@ extension YourBackend {
                 let items = list["items"] as? [Json]
             {
                 let flows = items.filter { (item) in
-                    if let target = item["target"] as? String {
-                        return target == "msdk"
+                    if let target = item["target"] as? String,
+                       let type = item["type"] as? String
+                    {
+                        return target == "msdk" && (forNewUser ? type != "actions" : true)
                     } else {
                         return false
                     }
-                } .map { (item) -> FlowName in
-                    return item["name"] as? FlowName ?? "noname"
+                } .map { (item) -> Flow in
+                    return Flow(
+                        name: item["name"] as? FlowName ?? "noname",
+                        isAction: item["type"] as? String ?? "" == "actions"
+                    )
                 }
                 
                 onComplete(nil, flows)

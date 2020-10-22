@@ -13,6 +13,7 @@ class DemoVC: UIViewController {
     @IBOutlet weak var userDropdown: DropdownField!
     @IBOutlet weak var userButton: Button!
     
+    @IBOutlet weak var flowDropdown: DropdownField!
     @IBOutlet weak var langDropdown: DropdownField!
     @IBOutlet weak var verificationButton: Button!
         

@@ -48,6 +48,9 @@ extension DemoVC {
         userDropdown.text = hasCurrent ? YourUser.userId : nil
         userDropdown.isEnabled = hasCurrent
         
+        flowDropdown.text = hasCurrent ? YourUser.flowName : nil
+        flowDropdown.isEnabled = hasCurrent
+        
         langDropdown.text = hasCurrent ? Language.current.name : nil
         langDropdown.isEnabled = hasCurrent
         
@@ -59,14 +62,44 @@ extension DemoVC {
     // MARK: -
     
     @IBAction func makeNewUser(_ sender: Any) {
-
-        self.userButton.startActivity()
         
-        YourBackend.getApplicantFlows { [weak self] (error, flows) in
+        selectFlow(sender, forNewUser: true) { (flow) in
+            
+            YourUser.makeNewUser(with: flow)
+            self.log("New user has been created with userId: \(YourUser.userId ?? "<null>"), flowName: \(YourUser.flowName)")
+            
+            self.redraw(animated: true)
+        }
+    }
+    
+    @IBAction func selectFlow(_ sender: Any) {
+        
+        selectFlow(sender, forNewUser: false) { (flow) in
+            YourUser.setFlow(flow)
+            self.log("New flow has been selected for userId: \(YourUser.userId ?? "<null>"), flowName: \(YourUser.flowName)")
+            self.redraw(animated: true)
+        }
+    }
+    
+    // MARK: -
+    
+    func selectFlow(_ sender: Any, forNewUser: Bool = false, onSelect: @escaping (Flow) -> Void) {
+
+        if forNewUser {
+            userButton.startActivity()
+        } else {
+            flowDropdown.startActivity()
+        }
+        
+        YourBackend.getApplicantFlows(forNewUser: forNewUser) { [weak self] (error, flows) in
             
             guard let self = self else { return }
             
-            self.userButton.stopActivity()
+            if forNewUser {
+                self.userButton.stopActivity()
+            } else {
+                self.flowDropdown.stopActivity()
+            }
             
             if let error = error {
                 self.showAlert(for: error) {
@@ -80,18 +113,15 @@ extension DemoVC {
                 return
             }
             
-            self.showSelect(from: sender, flows, "Select Applicant Flow") { (flowName) in
+            self.showSelect(from: sender, flows, "Select Applicant Flow") { (flow) in
                 
-                guard let flowName = flowName else { return }
-                
-                YourUser.makeNewUser(with: flowName)
-                self.log("New user has been created with userId: \(YourUser.userId ?? "<null>"), flowName: \(YourUser.flowName)")
-
-                self.redraw(animated: true)
+                if let flow = flow {
+                    onSelect(flow)
+                }
             }
         }
     }
-    
+
     func showNoFlowsAlert() {
         
         let alert = AlertController(
@@ -111,8 +141,6 @@ extension DemoVC {
     // MARK: -
     
     enum ApplicantMenu: String, Selectable {
-        case showUserId = "Show User Id"
-        case showFlowName = "Show Flow Name"
         case share = "Share…"
     }
         
@@ -123,15 +151,9 @@ extension DemoVC {
             guard let action = action else { return }
             
             switch action {
-            case .showUserId:
-                self.userDropdown.text = YourUser.userId
-                
-            case .showFlowName:
-                self.userDropdown.text = YourUser.flowName
-                
             case .share:
                 let objectToShare = self.userDropdown.text ?? "Not created yet"
-                
+                    
                 let vc = UIActivityViewController(activityItems: [objectToShare], applicationActivities: nil)
                 
                 if let view = sender as? UIView {

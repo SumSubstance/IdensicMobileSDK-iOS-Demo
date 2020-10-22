@@ -23,6 +23,11 @@ extension String {
         return URL(string: self)?.host
     }
     
+    var urlQueryEncoded: String {
+        
+        return addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? self
+    }
+    
     static func random(len: Int) -> String {
         
         let chars = "abcdefghjklmnpqrstuvwxyz12345789"

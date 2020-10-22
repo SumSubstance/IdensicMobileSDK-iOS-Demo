@@ -17,6 +17,7 @@ class Storage: UserDefaults {
         case bearerToken
         case userId
         case flowName
+        case externalActionId
         case lang
     }
     

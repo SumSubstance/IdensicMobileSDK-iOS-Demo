@@ -14,10 +14,15 @@ class DropdownField: TextField, UITextFieldDelegate {
         static let rightRectInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 16)
     }
 
+    private lazy var activityIndicator = UIActivityIndicatorView(style: .white)
+    private lazy var dropdownImageView = UIImageView(image: UIImage(named: "dropdown"))
+
     override func awakeFromNib() {
         super.awakeFromNib()
-                
-        rightView = UIImageView(image: UIImage(named: "dropdown"))
+
+        activityIndicator.color = textColor
+
+        rightView = dropdownImageView
         rightViewMode = .always
         delegate = self
     }
@@ -35,4 +40,41 @@ class DropdownField: TextField, UITextFieldDelegate {
             rightView?.alpha = isEnabled ? 1 : 0.35
         }
     }
+    
+    // MARK: -
+    
+    private var isBusy = false
+    
+    func startActivity() {
+        
+        redraw(isBusy: true)
+    }
+    
+    func stopActivity() {
+        redraw(isBusy: false)
+    }
+    
+    private func redraw(isBusy: Bool) {
+        
+        if self.isBusy == isBusy {
+            return
+        }
+        
+        self.isBusy = isBusy
+        
+        if isBusy {
+            if rightView != activityIndicator {
+                rightView = activityIndicator
+            }
+            activityIndicator.startAnimating()
+        } else {
+            if rightView != dropdownImageView {
+                rightView = dropdownImageView
+            }
+            activityIndicator.stopAnimating()
+        }
+                
+        isUserInteractionEnabled = !isBusy
+    }
+
 }
