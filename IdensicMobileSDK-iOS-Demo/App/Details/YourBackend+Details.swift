@@ -113,9 +113,8 @@ extension YourBackend {
                 let items = list["items"] as? [Json]
             {
                 let flows = items.filter { (item) in
-                    if let target = item["target"] as? String,
-                       let type = item["type"] as? String
-                    {
+                    if let target = item["target"] as? String {
+                        let type = item["type"] as? String ?? ""
                         return target == "msdk" && (forNewUser ? type != "actions" : true)
                     } else {
                         return false
