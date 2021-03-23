@@ -11,7 +11,7 @@ import IdensicMobileSDK
 
 struct IdentityVerification {
         
-    private static var sdk: SNSMobileSDK!
+    static var sdk: SNSMobileSDK!
         
     static func launch(
         from yourVC: UIViewController,
@@ -24,8 +24,8 @@ struct IdentityVerification {
         // Notes:
         //
         // 1. In order to identify an applicant to be verifed you create and pass down an `accessToken`
-        //    that is bound to your user. The access token has limited lifespan and when it's expired you must
-        //    provide another one. In order to do so you will ask your backend and most likely the backend
+        //    that is bound to your user. The access token is valid for a rather short period of time and when it's expired
+        //    you must provide another one. In order to do so you will ask your backend and most likely the backend
         //    will need to know the user's identifier. This is the only reason we have passed down `YourUser` here.
         //    It's used within `tokenExpirationHandler` in order to communicate to `YourBackend`.
         //
@@ -37,7 +37,9 @@ struct IdentityVerification {
         //
         // 4. The `locale` parameter can be nil or any string in a form of "en" or "en_US".
         //    In the case of nil, the system locale will be used automatically.
-        
+                
+        // MARK: Initialization
+        //
         log("Initialization")
         
         sdk = SNSMobileSDK(
@@ -53,9 +55,11 @@ struct IdentityVerification {
             return
         }
         
-        // If `accessToken` was empty during initialization, the sdk will call `tokenExpirationHandler` right after it's appeared up.
-        // The same handler will be called when the access token is invalid or expired.
-        
+        // MARK: tokenExpirationHandler
+        //
+        // The access token has a limited lifespan and when it's expired, you must provide another one.
+        // Get a new token using your backend, then call `onComplete` to pass the new token back.
+        //
         sdk.tokenExpirationHandler { (onComplete) in
             
             YourBackend.getAccessToken(for: user) { (error, newToken) in
@@ -68,18 +72,20 @@ struct IdentityVerification {
             }
         }
         
-        // Advanced setup (it's optional and could be skipped)
-        
+        // MARK: Advanced setup
+        //
+        // It's optional and could be skipped
+        //
         setupLogging()
         setupHandlers()
         setupCallbacks()
         setupSupportItems()
         setupTheme()
         
-        log("Launch")
+        // MARK: Presentation
+        //
+        log("Presentation")
 
-        // Present UI
-        
         yourVC.present(sdk.mainVC, animated: true, completion: nil)
     }
     
@@ -87,17 +93,23 @@ struct IdentityVerification {
         
         #if DEBUG
         
+        // MARK: logLevel
+        //
         // Change `logLevel` to see more info in the console (the default level is `.error`)
+        //
         sdk.logLevel = .error
         
-        // By default SDK uses `NSLog` for the logging purposes. If it does not work, you could use `logHandler` to overcome.
+        // MARK: logHandler
+        //
+        // By default, the SDK uses `NSLog` for logging purposes. If it doesn't work, you may use `logHandler`.
+        //
         sdk.logHandler { (level, message) in
             print(Date.formatted, "[Idensic] \(message)")
         }
         
         #else
         
-        // Perhaps it's good idea to shut the logs down in production
+        // Perhaps it's a good idea to shut the logs down in production
         sdk.logLevel = .off
         
         #endif
@@ -105,18 +117,27 @@ struct IdentityVerification {
     
     private static func setupHandlers() {
         
-        // Fired when verification process is done with a final decision
+        // MARK: verificationHandler
+        //
+        // Fired when the verification process is completed and a final decision has been made
+        //
         sdk.verificationHandler { (isApproved) in
             log("verificationHandler: Applicant is " + (isApproved ? "approved" : "finally rejected"))
         }
         
+        // MARK: dismissHandler
+        //
         // If `dismissHandler` is assigned, it's up to you to dismiss the `mainVC` controller.
+        //
         sdk.dismissHandler { (sdk, mainVC) in
             mainVC.presentingViewController?.dismiss(animated: true, completion: nil)
         }
         
+        // MARK: actionResultHandler
+        //
         // An optional way to get notified when an action's result has arrived from the backend.
         // The user sees the "Processing..." screen at this moment.
+        //
         sdk.actionResultHandler { (sdk, result, onComplete) in
             
             log("actionResultHandler: actionId=\(result.actionId) answer=\(result.answer ?? "<none>")")
@@ -129,8 +150,10 @@ struct IdentityVerification {
         
     private static func setupCallbacks() {
         
-        // Fired when the sdk's status has been updated
-        
+        // MARK: onStatusDidChange
+        //
+        // Fired when the SDK's status has been updated
+        //
         sdk.onStatusDidChange { (sdk, prevStatus) in
                         
             let prevStatusDesc = sdk.description(for: prevStatus)
@@ -171,8 +194,34 @@ struct IdentityVerification {
             log("onStatusDidChange: [\(prevStatusDesc)] -> [\(lastStatusDesc)] \(description)")
         }
         
+        // MARK: onEvent
+        //
+        // Subscribing to `onEvent` allows you to be aware of the events happening along the processing
+        //
+        sdk.onEvent { (sdk, event) in
+            
+            switch event.eventType {
+            
+            case .stepInitiated:
+                if let event = event as? SNSEventStepInitiated {
+                    log("onEvent: Step [\(event.idDocSetType)] has been initiated")
+                }
+                
+            case .stepCompleted:
+                if let event = event as? SNSEventStepCompleted {
+                    log("onEvent: Step [\(event.idDocSetType)] has been \(event.isCancelled ? "cancelled" : "fulfilled")")
+                }
+                
+            @unknown default:
+                log("onEvent: eventType=[\(event.description(for: event.eventType))] payload=\(event.payload)")
+            }
+            
+        }
+
+        // MARK: onDidDismiss
+        //
         // A way to be notified when `mainVC` is dismissed
-        
+        //
         sdk.onDidDismiss { (sdk) in
 
             let lastStatusDesc = sdk.description(for: sdk.status)
@@ -205,8 +254,10 @@ struct IdentityVerification {
     
     private static func setupSupportItems() {
         
+        // MARK: addSupportItem
+        //
         // Add Support Items if required
-        
+        //
         sdk.addSupportItem { (item) in
             item.title = NSLocalizedString("URL Item", comment: "")
             item.subtitle = NSLocalizedString("Tap me to open an url", comment: "")
@@ -226,13 +277,18 @@ struct IdentityVerification {
     
     private static func setupTheme() {
         
-        // You could either adjust UI in place
+        // MARK: theme
+        //
+        // You could either adjust UI in place,
+        //
         sdk.theme.sns_CameraScreenTorchButtonTintColor = .white
         
         // or apply your own Theme if it's more convenient
         sdk.theme = OwnTheme()
     }
 }
+
+// MARK: -
 
 fileprivate class OwnTheme: SNSTheme {
     override init() {

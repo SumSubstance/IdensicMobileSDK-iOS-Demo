@@ -31,7 +31,7 @@ class DropdownField: TextField, UITextFieldDelegate {
         return super.rightViewRect(forBounds: bounds).inset(by: Layout.rightRectInsets)
     }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    internal func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return false
     }
     

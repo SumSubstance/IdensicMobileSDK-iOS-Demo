@@ -11,13 +11,17 @@ import UIKit
 
 struct App {
     
+    static weak var window: UIWindow?
+    
     static func start(with window: UIWindow) {
+    
+        self.window = window
         
         SumSubAccount.restore()
         YourUser.restore()
 
         if SumSubAccount.isAuthorized {
-            navigationController.setViewControllers([LoginVC.controller, DemoVC.controller], animated: true)
+            showDemo()
         }
         
         window.rootViewController = navigationController
@@ -26,7 +30,7 @@ struct App {
     
     static func showDemo() {
         
-        navigationController.pushViewController(DemoVC.controller, animated: true)
+        navigationController.setViewControllers([HomeVC.controller, DemoVC.controller], animated: true)
     }
 }
 

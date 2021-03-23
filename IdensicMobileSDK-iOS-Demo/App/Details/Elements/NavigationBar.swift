@@ -18,5 +18,7 @@ class NavigationBar: UINavigationBar {
         
         shadowImage = UIImage()
         setValue(NSNumber(booleanLiteral: true), forKeyPath: "hidesShadow")
+        
+        titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.textColor]
     }
 }

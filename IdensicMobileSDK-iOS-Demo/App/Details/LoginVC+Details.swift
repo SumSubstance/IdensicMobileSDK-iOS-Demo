@@ -8,22 +8,82 @@
 
 import UIKit
 
-extension LoginVC {
+class LoginVC: UITableViewController {
     
     static var controller: UIViewController { return App.storyboard.instantiateViewController(withIdentifier: "LoginVC") }
+        
+    @IBOutlet weak var environmentField: DropdownField!
+    @IBOutlet weak var usernameField: TextField!
+    @IBOutlet weak var passwordField: TextField!
+    @IBOutlet weak var loginButton: Button!
+    
+    // MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
         view.backgroundColor = .bgColor
         
         usernameField.delegate = self
         passwordField.delegate = self
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        usernameField.text = SumSubAccount.username
+        passwordField.text = SumSubAccount.password
+        
+        redrawEnvironment()
+    }
     
+    // MARK: - Actions
+    
+    func logIntoSumSubAccount(onSuccess: @escaping () -> Void) {
+        
+        hideKeyboard()
+        
+        guard usernameField.hasValue == passwordField.hasValue else {
+            showWarning()
+            return
+        }
+        
+        SumSubAccount.username = usernameField.value ?? ""
+        SumSubAccount.password = passwordField.value ?? ""
+        
+        loginButton.startActivity()
+        
+        YourBackend.logIntoSumSubAccount { [weak self] (error, isAuthorized) in
+            
+            guard let self = self else { return }
+            
+            SumSubAccount.save()
+            
+            self.loginButton.stopActivity()
+            
+            if let error = error {
+                self.showAlert(for: error)
+            } else if !isAuthorized {
+                self.showWarning()
+            } else {
+                onSuccess()
+            }
+        }
+    }
+    
+    private func showWarning() {
+        
+        if !usernameField.hasValue || !passwordField.hasValue {
+            showAlert("Please, provide your credentials")
+        } else {
+            showAlert("Login failed")
+        }
+    }
+    
+
     // MARK: - Environment
     
-    func redrawEnvironment() {
+    private func redrawEnvironment() {
         
         environmentField.text = SumSubAccount.environmentName
     }
@@ -38,10 +98,10 @@ extension LoginVC {
             }
         }
     }
+
+    // MARK: - UITableViewDelegate
     
-    // MARK: -
-    
-    struct Layout {
+    private struct Layout {
         static let firstRowHeight = CGFloat(238)
         static let initialHeight = CGFloat(568)
     }
@@ -64,7 +124,7 @@ extension LoginVC {
 
 extension LoginVC: UITextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         switch textField {
         case usernameField:

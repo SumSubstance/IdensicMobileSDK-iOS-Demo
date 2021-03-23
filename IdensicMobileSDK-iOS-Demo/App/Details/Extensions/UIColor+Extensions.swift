@@ -20,6 +20,10 @@ extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 
+    static var globalAlertBgColor: UIColor {
+        return UIColor(0x222222)
+    }
+    
     static var bgColor: UIColor {
         return dynamicColor(0xFFFFFF, 0x222222)
     }
@@ -33,11 +37,11 @@ extension UIColor {
     }
     
     static var actionTintColor: UIColor {
-        return dynamicColor(0x027aff, 0xA2A3A2)
+        return textColor
     }
 
     static var textColor: UIColor {
-        return dynamicColor(0x28318D, 0xA2A3A2)
+        return dynamicColor(0x41495B, 0xA2A3A2)
     }
 
     static var textFieldBorderColor: UIColor {
@@ -53,7 +57,7 @@ extension UIColor {
     }
 
     static var actionFgColor: UIColor {
-        return dynamicColor(0xFEFFFE, 0xDEDFDE)
+        return dynamicColor(0xFEFFFE, 0xe9e9e9)
     }
 
     static var actionBgColor: UIColor {

@@ -11,6 +11,7 @@ import Foundation
 extension SumSubAccount {
         
     static var isAuthorized: Bool { return YourBackend.bearerToken != nil }
+    static var hasCredentials: Bool { return !username.isEmpty || !password.isEmpty }
     
     static func linkTo(_ path: String) -> URL? {
         

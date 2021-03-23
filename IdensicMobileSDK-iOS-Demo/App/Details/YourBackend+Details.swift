@@ -24,11 +24,51 @@ extension YourBackend {
     
     // MARK: - Authorization
     
-    static func logIntoSumSubAccount(onComplete: @escaping (Error?) -> Void) {
+    static func logIntoSumSubAccount(onComplete: @escaping (Error?, Bool) -> Void) {
+        
+        guard SumSubAccount.hasCredentials else {
+            checkIsAuthorized(onComplete: onComplete)
+            return;
+        }
         
         getBearerToken { (error, bearerToken) in
-            self.bearerToken = bearerToken
-            onComplete(error)
+            
+            if error == nil {
+                self.bearerToken = bearerToken
+            }
+            
+            onComplete(error, SumSubAccount.isAuthorized)
+        }
+    }
+    
+    static func checkIsAuthorized(delay: TimeInterval = 0, onComplete: @escaping (Error?, Bool) -> Void) {
+        
+        if delay > 0 {
+            checkIsAuthorized { (error, isAuthorized) in
+                DispatchQueue.main.asyncAfter(deadline: .now()+delay) {
+                    onComplete(error, isAuthorized)
+                }
+            }
+            return
+        }
+        
+        guard SumSubAccount.isAuthorized else {
+            onComplete(nil, false)
+            return
+        }
+        
+        get("/resources/auth/-/isLoggedIn") { (error, json, statusCode) in
+         
+            if let error = error {
+                onComplete(error, false)
+            }
+            else if let isLoggedIn = json?["loggedIn"] as? Bool {
+                log(isLoggedIn ? "Authorization is confirmed" : "Not authorized")
+                onComplete(nil, isLoggedIn)
+            }
+            else {
+                onComplete(NSError("Unable to check if we are logged in"), true)
+            }   
         }
     }
     
@@ -50,7 +90,11 @@ extension YourBackend {
         }
         
         post(path) { (error, json, statusCode) in
-                        
+
+            if statusCode == 401 {
+                App.checkAutorizationStatus()
+            }
+            
             if let error = error {
                 onComplete(error, nil)
             }
@@ -67,7 +111,7 @@ extension YourBackend {
     
     private static var sumsubApiURL: URL? { return URL(string: SumSubAccount.apiUrl) }
     
-    static func getBearerToken(onComplete: @escaping (Error?, BearerToken?) -> Void) {
+    private static func getBearerToken(onComplete: @escaping (Error?, BearerToken?) -> Void) {
         
         let path = "/resources/auth/login?ttlInSecs=86400"
         
@@ -85,12 +129,14 @@ extension YourBackend {
         send(request) { (error, json, statusCode) in
             
             if statusCode == 401 {
+                log("Not authorized")
                 onComplete(NSError("Wrong credentials"), nil)
             }
             else if let error = error {
                 onComplete(error, nil)
             }
             else if let token = json?["payload"] as? String {
+                log("Authorized")
                 onComplete(nil, token)
             }
             else {
@@ -137,23 +183,23 @@ extension YourBackend {
     
     // MARK: - Low level
 
-    typealias Json = Dictionary<AnyHashable,Any>
-    typealias StatusCode = Int
-    typealias ResponseCallback = (Error?, Json?, StatusCode) -> Void
+    private typealias Json = Dictionary<AnyHashable,Any>
+    private typealias StatusCode = Int
+    private typealias ResponseCallback = (Error?, Json?, StatusCode) -> Void
     
     private static var session = URLSession(configuration: URLSessionConfiguration.ephemeral)
 
-    static func get(_ path: String, onComplete: @escaping ResponseCallback) {
+    private static func get(_ path: String, onComplete: @escaping ResponseCallback) {
         
         request("GET", path, onComplete: onComplete)
     }
     
-    static func post(_ path: String, _ json: Json? = nil, onComplete: @escaping ResponseCallback) {
+    private static func post(_ path: String, _ json: Json? = nil, onComplete: @escaping ResponseCallback) {
         
         request("POST", path, json, onComplete: onComplete)
     }
     
-    static func request(_ method: String, _ path: String, _ json: Json? = nil, isRetring: Bool = false, onComplete: @escaping ResponseCallback) {
+    private static func request(_ method: String, _ path: String, _ json: Json? = nil, isRetring: Bool = false, onComplete: @escaping ResponseCallback) {
         
         guard sumsubApiURL != nil, let url = URL(string: path, relativeTo: sumsubApiURL) else {
             onComplete(NSError("Unable to create URLRequest for path: \(path)"), nil, 0)
@@ -165,12 +211,12 @@ extension YourBackend {
         
         send(request, json) { (error, json, statusCode) in
             
-            if statusCode != 401 || isRetring {
+            if statusCode != 401 || isRetring || !SumSubAccount.hasCredentials {
                 onComplete(error, json, statusCode)
                 return
             }
             
-            logIntoSumSubAccount { (loginError) in
+            logIntoSumSubAccount { (loginError, isAuthorized) in
                 if loginError != nil {
                     onComplete(error, json, statusCode)
                 } else {

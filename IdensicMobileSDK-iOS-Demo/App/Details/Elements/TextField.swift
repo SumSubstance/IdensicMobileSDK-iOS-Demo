@@ -10,7 +10,7 @@ import UIKit
 
 class TextField: UITextField {
 
-    struct Layout {
+    private struct Layout {
         static let insets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         static let closeButtonInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 8)
         static let cornerRadius = CGFloat(8)

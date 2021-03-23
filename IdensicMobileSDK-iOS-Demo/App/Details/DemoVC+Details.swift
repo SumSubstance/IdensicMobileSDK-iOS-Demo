@@ -8,10 +8,27 @@
 
 import UIKit
 
-extension DemoVC {
+class DemoVC: UIViewController {
     
     static var controller: UIViewController { return App.storyboard.instantiateViewController(withIdentifier: "DemoVC") }
+
+    @IBOutlet weak var userDropdown: DropdownField!
+    @IBOutlet weak var userButton: Button!
     
+    @IBOutlet weak var flowDropdown: DropdownField!
+    @IBOutlet weak var langDropdown: DropdownField!
+    @IBOutlet weak var verificationButton: Button!
+    
+    private var observer: NSObjectProtocol?
+    
+    // MARK: - Lifecycle
+    
+    deinit {
+        if let observer = observer {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -22,15 +39,29 @@ extension DemoVC {
         super.viewDidLoad()
         
         redraw()
+        
+        observer =
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
+                                               object: nil,
+                                               queue: .main)
+        { (notification) in
+
+            guard SumSubAccount.isAuthorized, !SumSubAccount.hasCredentials else { return }
+            
+            YourBackend.checkIsAuthorized { (error, isAuthorized) in
+                
+                if error != nil || isAuthorized || !SumSubAccount.isAuthorized { return }
+                
+                YourBackend.bearerToken = nil
+
+                App.checkAutorizationStatus()
+            }
+        }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        App.checkAutorizationStatus()
-    }
+    // MARK: -
     
-    func redraw(animated: Bool = false) {
+    private func redraw(animated: Bool = false) {
         
         if animated {
             UIView.animate(withDuration: 0.5) {
@@ -59,7 +90,7 @@ extension DemoVC {
         userButton.stopActivity()
     }
 
-    // MARK: -
+    // MARK: - Actions
     
     @IBAction func makeNewUser(_ sender: Any) {
         
@@ -83,7 +114,7 @@ extension DemoVC {
     
     // MARK: -
     
-    func selectFlow(_ sender: Any, forNewUser: Bool = false, onSelect: @escaping (Flow) -> Void) {
+    private func selectFlow(_ sender: Any, forNewUser: Bool = false, onSelect: @escaping (Flow) -> Void) {
 
         if forNewUser {
             userButton.startActivity()
@@ -102,8 +133,9 @@ extension DemoVC {
             }
             
             if let error = error {
-                self.showAlert(for: error) {
-                    App.checkAutorizationStatus()
+                
+                if App.checkAutorizationStatus() {
+                    self.showAlert(for: error)
                 }
                 return
             }
@@ -122,7 +154,7 @@ extension DemoVC {
         }
     }
 
-    func showNoFlowsAlert() {
+    private func showNoFlowsAlert() {
         
         let alert = AlertController(
             message: "It seems no applicant flows are defined yet. Please, set up one or more with the Dashboard:\n\nSDK Integrations -> Verification Flows"
@@ -140,7 +172,7 @@ extension DemoVC {
     
     // MARK: -
     
-    enum ApplicantMenu: String, Selectable {
+    private enum ApplicantMenu: String, Selectable {
         case share = "Share…"
     }
         
@@ -180,7 +212,7 @@ extension DemoVC {
 
     // MARK: - Logging
     
-    func log(_ message: String) {
+    private func log(_ message: String) {
         print(Date.formatted, "[DemoVC] " + message)
     }
     

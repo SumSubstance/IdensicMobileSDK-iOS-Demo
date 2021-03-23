@@ -100,3 +100,32 @@ class AlternativeButton: Button {
         highlightedBgColor = normalBgColor?.withAlphaComponent(0.8)
     }
 }
+
+class SecondaryButton: UIButton {
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let highlightedColor = UIColor.textColor
+        let normalColor = highlightedColor.withAlphaComponent(0.75)
+
+        setTitleColor(normalColor, for: .normal)
+        setTitleColor(highlightedColor, for: .highlighted)
+
+        if let attributedTitle = attributedTitle(for: .normal) {
+            setAttributedTitle(colorize(attributedTitle, with: normalColor), for: .normal)
+        }
+
+        if let attributedTitle = attributedTitle(for: .highlighted) ?? attributedTitle(for: .normal) {
+            setAttributedTitle(colorize(attributedTitle, with: highlightedColor), for: .highlighted)
+        }
+    }
+        
+    private func colorize(_ attributedTitle: NSAttributedString, with color: UIColor) -> NSAttributedString {
+        
+        let attributedString = NSMutableAttributedString(attributedString: attributedTitle)
+        attributedString.addAttributes([.foregroundColor: color], range: NSMakeRange(0, attributedString.length))
+        
+        return attributedString
+    }
+}
