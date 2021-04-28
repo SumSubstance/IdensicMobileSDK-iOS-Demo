@@ -20,4 +20,11 @@ post_install do |installer|
       end
     end
   end
+
+  puts "... Pods: exclude arm64 from builds against iphonesimulator sdk (in order to be able to run on Simulator on Apple M1)"
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+    end
+  end
 end
