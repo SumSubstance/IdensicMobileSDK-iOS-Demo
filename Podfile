@@ -5,7 +5,7 @@ source 'https://github.com/SumSubstance/Specs.git'
 
 target 'IdensicMobileSDK-iOS-Demo' do
 
-  pod 'IdensicMobileSDK', '=1.17.4'
+  pod 'IdensicMobileSDK', '=1.17.5'
 
   pod 'Toast-Swift'
   pod 'IQKeyboardManagerSwift'
