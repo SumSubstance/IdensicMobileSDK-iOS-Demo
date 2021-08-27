@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,6 +46,7 @@
 		D8E3F41A24751F3B001CA631 /* SumSubAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E3F41924751F3A001CA631 /* SumSubAccount.swift */; };
 		D8EDB2B4249CA26400E2C2B1 /* DemoVC+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDB2B3249CA26400E2C2B1 /* DemoVC+Details.swift */; };
 		D8EDB2B6249CA50F00E2C2B1 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDB2B5249CA50F00E2C2B1 /* Language.swift */; };
+		D8EDC6AB26D83794002CD9EC /* flow-based-initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EDC6AA26D83794002CD9EC /* flow-based-initialization.swift */; };
 		E103843F65D25D38D44F9B7F /* libPods-IdensicMobileSDK-iOS-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F59D9A56527893BBD3DAC4F0 /* libPods-IdensicMobileSDK-iOS-Demo.a */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		D8E3F41924751F3A001CA631 /* SumSubAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumSubAccount.swift; sourceTree = "<group>"; };
 		D8EDB2B3249CA26400E2C2B1 /* DemoVC+Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DemoVC+Details.swift"; sourceTree = "<group>"; };
 		D8EDB2B5249CA50F00E2C2B1 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		D8EDC6AA26D83794002CD9EC /* flow-based-initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "flow-based-initialization.swift"; sourceTree = "<group>"; };
 		E8B121B0D6B1277B1FC6A44E /* Pods-IdensicMobileSDK-iOS-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdensicMobileSDK-iOS-Demo.debug.xcconfig"; path = "Target Support Files/Pods-IdensicMobileSDK-iOS-Demo/Pods-IdensicMobileSDK-iOS-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		F59D9A56527893BBD3DAC4F0 /* libPods-IdensicMobileSDK-iOS-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IdensicMobileSDK-iOS-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 		D816AD2B249CC83600C70B17 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				D8EDC6A926D8373D002CD9EC /* Deprecations */,
 				D8E3F41924751F3A001CA631 /* SumSubAccount.swift */,
 				D87C7CDE246F19B9002DF81D /* YourUser.swift */,
 				D87C7CD7246EF19F002DF81D /* YourBackend.swift */,
@@ -258,6 +261,14 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		D8EDC6A926D8373D002CD9EC /* Deprecations */ = {
+			isa = PBXGroup;
+			children = (
+				D8EDC6AA26D83794002CD9EC /* flow-based-initialization.swift */,
+			);
+			path = Deprecations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -287,7 +298,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Sum & Substance";
 				TargetAttributes = {
 					D8C6722524474BEE00DB7309 = {
@@ -378,6 +389,7 @@
 				D8E3F41A24751F3B001CA631 /* SumSubAccount.swift in Sources */,
 				D8323337249B7EC000EE37EA /* YourBackend+Details.swift in Sources */,
 				D8323333249B7D5E00EE37EA /* YourUser+Details.swift in Sources */,
+				D8EDC6AB26D83794002CD9EC /* flow-based-initialization.swift in Sources */,
 				D816AD2F249CCA9400C70B17 /* Storage+Details.swift in Sources */,
 				D816AD29249CC4C100C70B17 /* LoginVC+Details.swift in Sources */,
 				D898628F247698790039D631 /* TextField.swift in Sources */,

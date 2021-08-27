@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mOf-5f-73s">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mOf-5f-73s">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +14,7 @@
             <objects>
                 <navigationController id="mOf-5f-73s" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="12P-Ap-BRI" customClass="NavigationBar" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.30941295619999998" green="0.36364471910000001" blue="0.45098984240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
@@ -34,20 +34,20 @@
             <objects>
                 <viewController storyboardIdentifier="HomeVC" title="Home" id="RVP-ft-HfI" customClass="HomeVC" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iJh-RI-cVq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="249" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="9fW-bl-oPn">
-                                <rect key="frame" x="20" y="8" width="280" height="125"/>
+                                <rect key="frame" x="47.5" y="8" width="280" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="GNV-aa-ww1"/>
-                                    <constraint firstAttribute="height" constant="125" id="bCa-FW-Mzn"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="125" id="rHE-XL-fNY"/>
+                                    <constraint firstAttribute="height" constant="150" id="bCa-FW-Mzn"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="rHE-XL-fNY"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="uO4-r3-eBV"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PxR-Nr-teO" customClass="Label" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="178" width="280" height="76.5"/>
+                                <rect key="frame" x="20" y="227.5" width="335" height="76.5"/>
                                 <string key="text">Welcome to
 the demo app</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="32"/>
@@ -55,11 +55,11 @@ the demo app</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5N6-fX-alP">
-                                <rect key="frame" x="20" y="418" width="280" height="106"/>
+                                <rect key="frame" x="20" y="517" width="335" height="106"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xoe-67-N7Q" customClass="Button" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
-                                        <color key="backgroundColor" red="0.16063469650000001" green="0.185126394" blue="0.57001763579999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                        <color key="backgroundColor" red="0.090196078431372548" green="0.21568627450980393" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="hkB-aZ-ZCq"/>
                                         </constraints>
@@ -69,7 +69,7 @@ the demo app</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lAe-Mh-i3J" customClass="SecondaryButton" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="58" width="280" height="48"/>
+                                        <rect key="frame" x="0.0" y="58" width="335" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="Srk-nw-DPI"/>
                                         </constraints>
@@ -124,23 +124,23 @@ the demo app</string>
             <objects>
                 <tableViewController storyboardIdentifier="LoginVC" title="Login" id="PUh-rj-SkQ" customClass="LoginVC" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" id="7ug-1i-IaG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="" id="shU-d8-y6r">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="140" id="H0A-oQ-MNF">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="140"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H0A-oQ-MNF" id="GcL-Mj-uHd">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oi1-cd-bPs">
-                                                    <rect key="frame" x="20" y="8" width="280" height="116"/>
+                                                    <rect key="frame" x="47.5" y="8" width="280" height="116"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="125" id="JiV-VM-pAq"/>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="JiV-VM-pAq"/>
                                                         <constraint firstAttribute="width" constant="280" id="eiC-By-2df"/>
                                                     </constraints>
                                                 </imageView>
@@ -154,10 +154,10 @@ the demo app</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="yN9-6M-gZX">
-                                        <rect key="frame" x="0.0" y="168" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="164.5" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yN9-6M-gZX" id="Gx7-5x-gPu">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, enter your credentials" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYk-1c-seu" customClass="Label" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
@@ -176,17 +176,17 @@ the demo app</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="232" id="TIw-St-0ge">
-                                        <rect key="frame" x="0.0" y="268" width="320" height="232"/>
+                                        <rect key="frame" x="0.0" y="264.5" width="375" height="232"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TIw-St-0ge" id="gUb-fw-Js2">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="232"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="232"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rOd-93-3pp">
-                                                    <rect key="frame" x="20" y="0.0" width="280" height="212"/>
+                                                    <rect key="frame" x="20" y="0.0" width="335" height="212"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Environment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PZ7-jt-sgJ" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="280" height="32"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="32"/>
                                                             <color key="backgroundColor" red="0.96056312320000004" green="0.96470874549999996" blue="0.96871882679999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="32" id="t5Q-LY-Act"/>
@@ -199,7 +199,7 @@ the demo app</string>
                                                             </connections>
                                                         </textField>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Gdw-Z0-6z8" customClass="TextField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="42" width="280" height="50"/>
+                                                            <rect key="frame" x="0.0" y="42" width="335" height="50"/>
                                                             <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="czK-x7-20E"/>
@@ -209,7 +209,7 @@ the demo app</string>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="username"/>
                                                         </textField>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OtC-PZ-Aht" customClass="TextField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="102" width="280" height="50"/>
+                                                            <rect key="frame" x="0.0" y="102" width="335" height="50"/>
                                                             <color key="backgroundColor" red="0.96056312320000004" green="0.96470874549999996" blue="0.96871882679999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="86E-iP-uX0"/>
@@ -219,8 +219,8 @@ the demo app</string>
                                                             <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                                         </textField>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxP-ZR-Cmc" customClass="Button" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="162" width="280" height="50"/>
-                                                            <color key="backgroundColor" red="0.16078431372549018" green="0.18431372549019609" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <rect key="frame" x="0.0" y="162" width="335" height="50"/>
+                                                            <color key="backgroundColor" red="0.090196078431372548" green="0.21568627450980393" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="h70-GH-lIM"/>
                                                             </constraints>
@@ -268,18 +268,18 @@ the demo app</string>
             <objects>
                 <viewController storyboardIdentifier="ScanVC" title="Scan" id="h6Z-lY-aVj" customClass="ScanVC" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h3H-RB-P9k">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6a-Gs-bao" customClass="CaptureVideoPreviewView" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="345.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="465"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giz-Ul-IsL">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="345.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="465"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="7No-7Z-7e4">
-                                        <rect key="frame" x="150" y="163" width="20" height="20"/>
+                                        <rect key="frame" x="177.5" y="222.5" width="20" height="20"/>
                                         <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </activityIndicatorView>
                                 </subviews>
@@ -294,25 +294,25 @@ the demo app</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PbQ-3O-Tue">
-                                <rect key="frame" x="20" y="345.5" width="280" height="158.5"/>
+                                <rect key="frame" x="20" y="465" width="335" height="138"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qr-code-icon" translatesAutoresizingMaskIntoConstraints="NO" id="XzH-7y-3Kb">
-                                        <rect key="frame" x="117.5" y="16" width="45" height="45"/>
+                                        <rect key="frame" x="145" y="16" width="45" height="45"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cuq-hs-o8a" customClass="Label" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="77" width="280" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="77" width="335" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Please open the Sumsub dashboard on your computer and scan the QR code to connect the application with your account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koj-5g-nXU" customClass="Label" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="77" width="280" height="81.5"/>
+                                        <rect key="frame" x="0.0" y="77" width="335" height="61"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" red="0.254629463" green="0.2854117155" blue="0.3568702936" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZt-4J-YM6">
-                                        <rect key="frame" x="115.5" y="18" width="49" height="2"/>
+                                        <rect key="frame" x="143" y="18" width="49" height="2"/>
                                         <color key="backgroundColor" red="0.93020915989999997" green="0.37750512359999999" blue="0.32936748859999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="ytL-a4-YuN"/>
@@ -372,21 +372,21 @@ the demo app</string>
             <objects>
                 <viewController storyboardIdentifier="DemoVC" title="Demo" id="VXM-Pf-24f" customClass="DemoVC" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vbf-Dw-HW1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="249" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="RCA-Ei-aGh">
-                                <rect key="frame" x="20" y="8" width="280" height="125"/>
+                                <rect key="frame" x="47.5" y="8" width="280" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="M7m-aN-G6g"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="125" id="Pse-bX-WVn"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="Pse-bX-WVn"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Eph-XK-bhj">
-                                <rect key="frame" x="20" y="188" width="280" height="110"/>
+                                <rect key="frame" x="20" y="287" width="335" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Not created yet" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K3X-lI-tHC" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="JrD-rp-Fmu"/>
@@ -399,8 +399,8 @@ the demo app</string>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkY-6r-JwF" customClass="Button" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="60" width="280" height="50"/>
-                                        <color key="backgroundColor" red="0.16063469650000001" green="0.185126394" blue="0.57001763579999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="60" width="335" height="50"/>
+                                        <color key="backgroundColor" red="0.090196078431372548" green="0.21568627450980393" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="KEb-2R-hzz"/>
                                         </constraints>
@@ -412,10 +412,10 @@ the demo app</string>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hkd-4Y-S1Y">
-                                <rect key="frame" x="20" y="338" width="280" height="170"/>
+                                <rect key="frame" x="20" y="437" width="335" height="170"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Applicant Flow" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B4C-3m-OJ6" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Applicant Level" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B4C-3m-OJ6" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="cdz-Q9-huf"/>
@@ -424,11 +424,11 @@ the demo app</string>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="selectFlow:" destination="VXM-Pf-24f" eventType="touchDown" id="0nq-Ag-fCa"/>
+                                            <action selector="selectLevel:" destination="VXM-Pf-24f" eventType="touchDown" id="ibd-mG-V54"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="System Language" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NLn-8x-jil" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="60" width="280" height="50"/>
+                                        <rect key="frame" x="0.0" y="60" width="335" height="50"/>
                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Mhh-s5-Grs"/>
@@ -441,8 +441,8 @@ the demo app</string>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfh-BN-GbJ" customClass="Button" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="120" width="280" height="50"/>
-                                        <color key="backgroundColor" red="0.16063469650000001" green="0.185126394" blue="0.57001763579999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="120" width="335" height="50"/>
+                                        <color key="backgroundColor" red="0.090196078431372548" green="0.21568627450980393" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="5X4-TH-f1Y"/>
                                         </constraints>
@@ -477,8 +477,8 @@ the demo app</string>
                     </view>
                     <navigationItem key="navigationItem" id="dTr-bo-bse"/>
                     <connections>
-                        <outlet property="flowDropdown" destination="B4C-3m-OJ6" id="ffp-G5-XaQ"/>
                         <outlet property="langDropdown" destination="NLn-8x-jil" id="mJZ-kd-hVy"/>
+                        <outlet property="levelDropdown" destination="B4C-3m-OJ6" id="ffp-G5-XaQ"/>
                         <outlet property="userButton" destination="jkY-6r-JwF" id="IFo-WA-PGR"/>
                         <outlet property="userDropdown" destination="K3X-lI-tHC" id="An8-oF-OEW"/>
                         <outlet property="verificationButton" destination="Rfh-BN-GbJ" id="iz3-lw-10n"/>
@@ -493,7 +493,7 @@ the demo app</string>
         <segue reference="hdD-6W-eFR"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="logo" width="280" height="180"/>
+        <image name="logo" width="512" height="512"/>
         <image name="qr-code-icon" width="45" height="45"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

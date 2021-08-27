@@ -10,12 +10,11 @@ import UIKit
 
 extension DemoVC {
 
-    @IBAction func launchVerification(_ sender: Any) {
+    func launchVerification() {
         
         IdentityVerification.launch(
             from: self,
             for: YourUser.current,
-            flowName: YourUser.flowName,
             locale: Language.locale
         )
     }

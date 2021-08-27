@@ -10,6 +10,9 @@ import Foundation
 
 class Storage: UserDefaults {
     
+    static var levelName: LevelName?
+    static var flowName: FlowName?
+    
     enum Key: String {
         case apiUrl
         case username
@@ -17,14 +20,20 @@ class Storage: UserDefaults {
         case bearerToken
         case userId
         case flowName
+        case levelName
         case externalActionId
         case lang
+        case isFlowBased
     }
     
     static func getString(_ key: Key) -> String? {
         return get(key) as? String
     }
     
+    static func getBool(_ key: Key) -> Bool? {
+        return get(key) as? Bool
+    }
+
     static func get(_ key: Key) -> Any? {
         return standard.value(forKey: key.rawValue)
     }

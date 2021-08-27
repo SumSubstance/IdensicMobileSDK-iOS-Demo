@@ -60,7 +60,7 @@ extension UIColor {
     }
 
     static var actionBgColor: UIColor {
-        return dynamicColor(0x28318D, 0x006082)
+        return dynamicColor(0x173774, 0x006082)
     }
 
     static var alternativeBgColor: UIColor {

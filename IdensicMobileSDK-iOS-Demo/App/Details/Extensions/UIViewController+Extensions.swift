@@ -39,7 +39,7 @@ extension UIViewController {
         let alert = AlertController(message: message)
         
         alert.addAction("OK", handler: actionHandler)
-        alert.preset(from: self)
+        alert.present(from: self)
     }
 
     func showSelect<T:Selectable>(from sender: Any?, _ list: T.Type, _ message: String? = nil, onComplete: @escaping (T?) -> Void) {
@@ -85,7 +85,7 @@ extension UIViewController {
             onComplete(nil)
         }
         
-        sheet.preset(from: self)
+        sheet.present(from: self)
     }
     
     func hideKeyboard() {

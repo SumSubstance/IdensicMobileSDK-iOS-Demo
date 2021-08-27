@@ -7,13 +7,23 @@
 //
 
 import Foundation
+import IdensicMobileSDK
 
 typealias FlowName = String
+typealias LevelName = String
 typealias AccessToken = String
 typealias BearerToken = String
 
-struct Flow: Stringable {
+struct ApplicantLevel: Stringable {
+    var name: LevelName
+    var flowId: String?
+    var isAction: Bool = false
+    var toString: String? { return name }
+}
+
+struct ApplicantFlow: Stringable {
     var name: FlowName
+    var id: String
     var isAction: Bool
     var toString: String? { return name }
 }
@@ -24,34 +34,40 @@ extension YourBackend {
     
     // MARK: - Authorization
     
-    static func logIntoSumSubAccount(onComplete: @escaping (Error?, Bool) -> Void) {
-        
-        guard SumSubAccount.hasCredentials else {
-            checkIsAuthorized(onComplete: onComplete)
-            return;
-        }
-        
-        getBearerToken { (error, bearerToken) in
-            
-            if error == nil {
-                self.bearerToken = bearerToken
-            }
-            
-            onComplete(error, SumSubAccount.isAuthorized)
-        }
-    }
-    
-    static func checkIsAuthorized(delay: TimeInterval = 0, onComplete: @escaping (Error?, Bool) -> Void) {
+    static func logIntoSumSubAccount(delay: TimeInterval = 0, onComplete: @escaping (Error?, Bool) -> Void) {
         
         if delay > 0 {
-            checkIsAuthorized { (error, isAuthorized) in
+            logIntoSumSubAccount { (error, isAuthorized) in
                 DispatchQueue.main.asyncAfter(deadline: .now()+delay) {
                     onComplete(error, isAuthorized)
                 }
             }
             return
         }
+
+        guard SumSubAccount.hasCredentials else {
+            checkIsAuthorized { error, isAuthorized in
+                loadSettings(error) { error in
+                    onComplete(error, isAuthorized)
+                }
+            }
+            return;
+        }
         
+        getBearerToken { (error, bearerToken) in
+
+            if error == nil {
+                self.bearerToken = bearerToken
+            }
+            
+            loadSettings(error) { error in
+                onComplete(error, SumSubAccount.isAuthorized)
+            }
+        }
+    }
+
+    static func checkIsAuthorized(onComplete: @escaping (Error?, Bool) -> Void) {
+                
         guard SumSubAccount.isAuthorized else {
             onComplete(nil, false)
             return
@@ -81,12 +97,13 @@ extension YourBackend {
             return
         }
         
-        let path: String
+        var path: String = "/resources/accessTokens?&userId=\(userId.urlQueryEncoded)&ttlInSecs=600"
         
+        if let levelName = Storage.levelName {
+            path = path + "&levelName=\(levelName.urlQueryEncoded)"
+        }
         if let externalActionId = user?.externalActionId {
-            path = "/resources/accessTokens?userId=\(userId.urlQueryEncoded)&externalActionId=\(externalActionId.urlQueryEncoded)&ttlInSecs=600"
-        } else {
-            path = "/resources/accessTokens?userId=\(userId.urlQueryEncoded)&ttlInSecs=600"
+            path = path + "&externalActionId=\(externalActionId.urlQueryEncoded)"
         }
         
         post(path) { (error, json, statusCode) in
@@ -145,7 +162,88 @@ extension YourBackend {
         }
     }
     
-    static func getApplicantFlows(forNewUser: Bool, onComplete: @escaping (Error?, [Flow]?) -> Void) {
+    static func getApplicantLevels(forNewUser: Bool, onComplete: @escaping (Error?, [ApplicantLevel]?) -> Void) {
+        
+        let dispatchGroup = DispatchGroup()
+        
+        var errors = [Error]()
+        var levels = [ApplicantLevel]()
+        var flows = [ApplicantFlow]()
+        
+        dispatchGroup.enter()
+        getApplicantLevels { error, results in
+            if let error = error {
+                errors.append(error)
+            } else {
+                levels = results ?? []
+            }
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        getApplicantFlows { error, results in
+            if let error = error {
+                errors.append(error)
+            } else {
+                flows = results ?? []
+            }
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            if let error = errors.first {
+                onComplete(error, nil)
+                return
+            }
+            
+            let levels = levels.map { level -> ApplicantLevel in
+                if let flow = flows.first(where: { $0.id == level.flowId }) {
+                    return ApplicantLevel(name: level.name, flowId: level.flowId, isAction: flow.isAction)
+                } else {
+                    return level
+                }
+            } .filter {
+                if forNewUser {
+                    return !$0.isAction
+                } else {
+                    return true
+                }
+            }
+            
+            onComplete(nil, levels)
+        }
+        
+    }
+    
+    private static func getApplicantLevels(onComplete: @escaping (Error?, [ApplicantLevel]?) -> Void) {
+        
+        get("/resources/applicants/-/levels") { (error, json, statusCode) in
+            
+            if let error = error {
+                onComplete(error, nil)
+                return
+            }
+
+            if
+                let list = json?["list"] as? Json,
+                let items = list["items"] as? [Json]
+            {
+                let levels = items.map { (item) -> ApplicantLevel in
+                    return ApplicantLevel(
+                        name: item["name"] as? LevelName ?? "noname",
+                        flowId: item["msdkFlowId"] as? String
+                    )
+                }
+                
+                onComplete(nil, levels)
+            }
+            else {
+                onComplete(NSError("Unable to get applicant levels"), nil)
+            }
+        }
+    }
+    
+    static func getApplicantFlows(forNewUser: Bool = false, onComplete: @escaping (Error?, [ApplicantFlow]?) -> Void) {
         
         get("/resources/sdkIntegrations/flows") { (error, json, statusCode) in
             
@@ -153,7 +251,7 @@ extension YourBackend {
                 onComplete(error, nil)
                 return
             }
-              
+
             if
                 let list = json?["list"] as? Json,
                 let items = list["items"] as? [Json]
@@ -165,9 +263,10 @@ extension YourBackend {
                     } else {
                         return false
                     }
-                } .map { (item) -> Flow in
-                    return Flow(
+                } .map { (item) -> ApplicantFlow in
+                    return ApplicantFlow(
                         name: item["name"] as? FlowName ?? "noname",
+                        id: item["id"] as? String ?? "noid",
                         isAction: item["type"] as? String ?? "" == "actions"
                     )
                 }
@@ -179,6 +278,32 @@ extension YourBackend {
             }
         }
         
+    }
+    
+    // MARK: - Settings
+    
+    private static func loadSettings(_ prevError: Error? = nil, onComplete: @escaping (Error?) -> Void) {
+        
+        if let error = prevError {
+            onComplete(error)
+            return
+        }
+        
+        get("/resources/featureFlags/frontend") { (error, json, statusCode) in
+            
+            if let error = error {
+                onComplete(error)
+                return
+            }
+            
+            if let json = json {
+                let levelsRevamp = json["levelsRevamp"] as? Bool ?? false
+                SumSubAccount.isFlowBased = !levelsRevamp
+                onComplete(nil)
+            } else {
+                onComplete(NSError("Unable to get feature flags"))
+            }
+        }
     }
     
     // MARK: - Low level

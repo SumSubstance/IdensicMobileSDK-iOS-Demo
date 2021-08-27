@@ -16,38 +16,37 @@ struct IdentityVerification {
     static func launch(
         from yourVC: UIViewController,
         for user: YourUser?,
-        flowName: String,
         accessToken: String = "",
         locale: String? = nil)
     {
 
         // Notes:
         //
-        // 1. In order to identify an applicant to be verifed you create and pass down an `accessToken`
-        //    that is bound to your user. The access token is valid for a rather short period of time and when it's expired
+        // 1. The applicant to be verified (a user) and the steps the verification process consists of (an applicant level)
+        //    are defined by the `accessToken` you take from your backend and pass over to the sdk initialization.
+        //
+        //    The access token is valid for a rather short period of time and when it's expired
         //    you must provide another one. In order to do so you will ask your backend and most likely the backend
         //    will need to know the user's identifier. This is the only reason we have passed down `YourUser` here.
         //    It's used within `tokenExpirationHandler` in order to communicate to `YourBackend`.
         //
-        // 2. The `flowName` designates the applicant flow that must be set up with the dashboard (SDK Integrations -> Verification Flows).
-        //
-        // 3. You can either provide the `accessToken` right at the initializaton stage,
+        // 2. You can either provide the `accessToken` right at the initializaton stage,
         //    or pass it as an empty string initially and supply it later on with `tokenExpirationHandler`.
         //    The second way allows you not to worry about spinners and so on. We'll go this way below.
         //
-        // 4. The `locale` parameter can be nil or any string in a form of "en" or "en_US".
+        // 3. The `locale` parameter can be nil or any string in a form of "en" or "en_US".
         //    In the case of nil, the system locale will be used automatically.
                 
         // MARK: Initialization
         //
         log("Initialization")
         
+        // Specify the environment you work with
+        let environment: SNSEnvironment = SumSubAccount.isTestEnvironment ? .test : .production
+        
         sdk = SNSMobileSDK(
-            baseUrl: SumSubAccount.apiUrl,
-            flowName: flowName,
             accessToken: accessToken,
-            locale: locale,
-            supportEmail: "support@your-company.com" // or use `nil` and configure Support Items later on
+            environment: environment
         )
         
         guard sdk.isReady else {
@@ -71,8 +70,8 @@ struct IdentityVerification {
                 onComplete(newToken)
             }
         }
-        
-        // MARK: Advanced setup
+
+        // MARK: Advanced Setup
         //
         // It's optional and could be skipped
         //
@@ -80,16 +79,17 @@ struct IdentityVerification {
         setupHandlers()
         setupCallbacks()
         setupSupportItems()
+        setupLocalization(locale)
         setupTheme()
-        
+
         // MARK: Presentation
         //
         log("Presentation")
-
+        
         yourVC.present(sdk.mainVC, animated: true, completion: nil)
     }
-    
-    private static func setupLogging() {
+
+    static func setupLogging() {
         
         #if DEBUG
         
@@ -115,7 +115,7 @@ struct IdentityVerification {
         #endif
     }
     
-    private static func setupHandlers() {
+    static func setupHandlers() {
         
         // MARK: verificationHandler
         //
@@ -148,7 +148,7 @@ struct IdentityVerification {
         }
     }
         
-    private static func setupCallbacks() {
+    static func setupCallbacks() {
         
         // MARK: onStatusDidChange
         //
@@ -252,7 +252,7 @@ struct IdentityVerification {
         }
     }
     
-    private static func setupSupportItems() {
+    static func setupSupportItems() {
         
         // MARK: addSupportItem
         //
@@ -275,13 +275,23 @@ struct IdentityVerification {
         }
     }
     
-    private static func setupTheme() {
+    static func setupLocalization(_ locale: String?) {
+        
+        // MARK: locale
+        //
+        // Set the locale the sdk should use for texts (the system locale will be used by default)
+        // Use locale in a form of `en` or `en_US`
+        //
+        sdk.locale = locale
+    }
+
+    static func setupTheme() {
         
         // MARK: theme
         //
         // You could either adjust UI in place,
         //
-        sdk.theme.sns_CameraScreenTorchButtonTintColor = .white
+        sdk.theme.fonts.headline1 = .systemFont(ofSize: 24, weight: .bold)
         
         // or apply your own Theme if it's more convenient
         sdk.theme = OwnTheme()
@@ -294,7 +304,7 @@ fileprivate class OwnTheme: SNSTheme {
     override init() {
         super.init()
         
-        sns_CameraScreenTorchButtonTintColor = .white
+        fonts.headline1 = .systemFont(ofSize: 24, weight: .bold)
     }
 }
 
@@ -302,11 +312,11 @@ fileprivate class OwnTheme: SNSTheme {
 
 extension IdentityVerification {
     
-    private static func log(_ message: String) {
+    static func log(_ message: String) {
         print(Date.formatted, "[IdentityVerification] " + message)
     }
     
-    private static func logAndAlert(_ message: String) {
+    static func logAndAlert(_ message: String) {
         log(message)
         App.showAlert(message)
     }

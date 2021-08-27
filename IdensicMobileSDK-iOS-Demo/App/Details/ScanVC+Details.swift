@@ -122,7 +122,7 @@ class ScanVC: UIViewController {
         
         showStatusProcessing { [weak self] in
             
-            YourBackend.checkIsAuthorized(delay: 0.5) { (error, isAuthorized) in
+            YourBackend.logIntoSumSubAccount(delay: 0.5) { (error, isAuthorized) in
                 
                 if isAuthorized {
                     SumSubAccount.save()

@@ -24,7 +24,7 @@ class AlertController: UIAlertController {
         })
     }
     
-    func preset(from vc: UIViewController, animated: Bool = true) {
+    func present(from vc: UIViewController, animated: Bool = true) {
         vc.present(self, animated: animated, completion: nil)
     }
     
