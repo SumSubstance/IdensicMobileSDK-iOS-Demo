@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mOf-5f-73s">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mOf-5f-73s">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -99,7 +99,7 @@ the demo app</string>
                             <constraint firstItem="YPR-5a-Yc9" firstAttribute="trailing" secondItem="5N6-fX-alP" secondAttribute="trailing" constant="20" id="3Hn-af-J67"/>
                             <constraint firstItem="9fW-bl-oPn" firstAttribute="centerX" secondItem="iJh-RI-cVq" secondAttribute="centerX" id="3Td-jO-1dI"/>
                             <constraint firstItem="PxR-Nr-teO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="9fW-bl-oPn" secondAttribute="bottom" constant="24" id="RO4-BZ-1Hh"/>
-                            <constraint firstItem="PxR-Nr-teO" firstAttribute="centerY" secondItem="iJh-RI-cVq" secondAttribute="centerY" constant="-46" id="TW8-AC-u9g"/>
+                            <constraint firstItem="PxR-Nr-teO" firstAttribute="centerY" secondItem="iJh-RI-cVq" secondAttribute="centerY" priority="750" constant="-46" id="TW8-AC-u9g"/>
                             <constraint firstItem="YPR-5a-Yc9" firstAttribute="trailing" secondItem="PxR-Nr-teO" secondAttribute="trailing" constant="20" id="VDE-E3-Qrp"/>
                             <constraint firstItem="5N6-fX-alP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="PxR-Nr-teO" secondAttribute="bottom" constant="24" id="Z6Y-8S-a3k"/>
                             <constraint firstItem="YPR-5a-Yc9" firstAttribute="bottom" secondItem="5N6-fX-alP" secondAttribute="bottom" id="jSq-xW-p1j"/>
@@ -131,7 +131,7 @@ the demo app</string>
                             <tableViewSection headerTitle="" id="shU-d8-y6r">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="140" id="H0A-oQ-MNF">
-                                        <rect key="frame" x="0.0" y="24.5" width="375" height="140"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H0A-oQ-MNF" id="GcL-Mj-uHd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
@@ -154,7 +154,7 @@ the demo app</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="yN9-6M-gZX">
-                                        <rect key="frame" x="0.0" y="164.5" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="184.5" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yN9-6M-gZX" id="Gx7-5x-gPu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -176,7 +176,7 @@ the demo app</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="232" id="TIw-St-0ge">
-                                        <rect key="frame" x="0.0" y="264.5" width="375" height="232"/>
+                                        <rect key="frame" x="0.0" y="284.5" width="375" height="232"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TIw-St-0ge" id="gUb-fw-Js2">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="232"/>

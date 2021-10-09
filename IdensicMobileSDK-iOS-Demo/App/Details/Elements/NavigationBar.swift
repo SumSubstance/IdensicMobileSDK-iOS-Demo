@@ -16,9 +16,28 @@ class NavigationBar: UINavigationBar {
         barTintColor = .bgColor
         tintColor = .navbarTintColor
         
-        shadowImage = UIImage()
-        setValue(NSNumber(booleanLiteral: true), forKeyPath: "hidesShadow")
-        
         titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.textColor]
+        
+        if #available(iOS 15.0, *) {
+            
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            
+            appearance.backgroundColor = barTintColor
+            appearance.shadowImage = UIImage()
+            appearance.shadowColor = .clear
+            if let titleTextAttributes = titleTextAttributes {
+                appearance.titleTextAttributes = titleTextAttributes
+            }
+            
+            standardAppearance = appearance
+            scrollEdgeAppearance = standardAppearance
+            
+        } else {
+            
+            shadowImage = UIImage()
+            setValue(NSNumber(booleanLiteral: true), forKeyPath: "hidesShadow")
+        }
+
     }
 }
