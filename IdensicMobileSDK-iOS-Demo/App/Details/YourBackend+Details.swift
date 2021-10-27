@@ -46,7 +46,14 @@ extension YourBackend {
         }
 
         guard SumSubAccount.hasCredentials else {
+            
             checkIsAuthorized { error, isAuthorized in
+                
+                if !isAuthorized {
+                    onComplete(error, isAuthorized)
+                    return
+                }
+                
                 loadSettings(error) { error in
                     onComplete(error, isAuthorized)
                 }
@@ -79,7 +86,7 @@ extension YourBackend {
                 onComplete(error, false)
             }
             else if let isLoggedIn = json?["loggedIn"] as? Bool {
-                log(isLoggedIn ? "Authorization is confirmed" : "Not authorized")
+                log(isLoggedIn ? "Authorization is confirmed" + (SumSubAccount.isSandbox ? " (sandbox)" : "") : "Not authorized")
                 onComplete(nil, isLoggedIn)
             }
             else {
@@ -153,7 +160,7 @@ extension YourBackend {
                 onComplete(error, nil)
             }
             else if let token = json?["payload"] as? String {
-                log("Authorized")
+                log("Authorized" + (SumSubAccount.isSandbox ? " (sandbox)" : ""))
                 onComplete(nil, token)
             }
             else {
@@ -366,6 +373,12 @@ extension YourBackend {
             request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
         }
         
+        if SumSubAccount.isSandbox {
+            request.setValue("_ss_route=sbx", forHTTPHeaderField: "Cookie")
+        }
+        
+        request.setValue("msdkDemo", forHTTPHeaderField: "X-Client-Id")
+
         let fail = { (_ error: Any?, _ statusCode: StatusCode) in
             DispatchQueue.main.async {
                 if let error = error as? Error {

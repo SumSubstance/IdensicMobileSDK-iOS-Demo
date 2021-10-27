@@ -11,6 +11,7 @@ import Foundation
 struct SumSubAccount {
     
     static var apiUrl: String = SumSubEnvironment.test.apiUrl
+    static var isSandbox: Bool = false
     static var username: String = ""
     static var password: String = ""
 }
@@ -19,4 +20,5 @@ enum SumSubEnvironment: String, Selectable {
     
     case test = "https://test-api.sumsub.com"
     case prod = "https://api.sumsub.com"
+    case sandbox = "sandbox"
 }

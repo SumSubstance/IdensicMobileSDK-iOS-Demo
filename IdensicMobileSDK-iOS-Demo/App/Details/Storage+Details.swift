@@ -24,6 +24,7 @@ class Storage: UserDefaults {
         case externalActionId
         case lang
         case isFlowBased
+        case isSandbox
     }
     
     static func getString(_ key: Key) -> String? {

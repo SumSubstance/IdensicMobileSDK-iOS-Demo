@@ -24,11 +24,16 @@ extension SumSubAccount {
     static func setEnvironment(_ environment: SumSubEnvironment) {
         
         apiUrl = environment.apiUrl
+        isSandbox = environment.isSandbox
     }
     
     static var environmentName: String {
         
-        return SumSubEnvironment(rawValue: apiUrl)?.name ?? apiUrl
+        if isSandbox {
+            return SumSubEnvironment.sandbox.name
+        } else {
+            return SumSubEnvironment(rawValue: apiUrl)?.name ?? apiUrl
+        }
     }
     
     static func save() {
@@ -37,6 +42,7 @@ extension SumSubAccount {
         Storage.set(username, for: .username)
         Storage.set(password, for: .password)
         Storage.set(apiUrl, for: .apiUrl)
+        Storage.set(isSandbox, for: .isSandbox)
         Storage.set(YourBackend.bearerToken, for: .bearerToken)
     }
     
@@ -54,6 +60,9 @@ extension SumSubAccount {
         if let apiUrl = Storage.getString(.apiUrl) {
             SumSubAccount.apiUrl = apiUrl
         }
+        if let isSandbox = Storage.getBool(.isSandbox) {
+            SumSubAccount.isSandbox = isSandbox
+        }
         if let bearerToken = Storage.getString(.bearerToken) {
             YourBackend.bearerToken = bearerToken
         }
@@ -62,6 +71,21 @@ extension SumSubAccount {
 
 extension SumSubEnvironment {
     
-    var apiUrl: String { rawValue }
-    var name: String { apiUrl.domain ?? apiUrl }
+    var isSandbox: Bool { self == .sandbox }
+    
+    var apiUrl: String {
+        if isSandbox {
+            return Self.prod.apiUrl
+        } else {
+            return rawValue
+        }
+    }
+    
+    var name: String {
+        if isSandbox {
+            return "sandbox"
+        } else {
+            return apiUrl.domain ?? apiUrl
+        }
+    }
 }
