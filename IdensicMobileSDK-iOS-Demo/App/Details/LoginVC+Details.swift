@@ -50,6 +50,7 @@ class LoginVC: UITableViewController {
         
         SumSubAccount.username = usernameField.value ?? ""
         SumSubAccount.password = passwordField.value ?? ""
+        YourBackend.client = SumSubAccount.hasCredentials ? nil : YourBackend.client
         
         loginButton.startActivity()
         

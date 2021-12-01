@@ -18,6 +18,7 @@ class Storage: UserDefaults {
         case username
         case password
         case bearerToken
+        case client
         case userId
         case flowName
         case levelName

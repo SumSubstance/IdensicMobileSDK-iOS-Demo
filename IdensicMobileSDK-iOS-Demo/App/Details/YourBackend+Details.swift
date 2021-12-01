@@ -31,6 +31,7 @@ struct ApplicantFlow: Stringable {
 extension YourBackend {
     
     static var bearerToken: BearerToken?
+    static var client: String?
     
     // MARK: - Authorization
     
@@ -373,11 +374,23 @@ extension YourBackend {
             request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
         }
         
+        if let client = client {
+            request.setValue(client.urlQueryEncoded, forHTTPHeaderField: "X-Impersonate")
+        }
+        
         if SumSubAccount.isSandbox {
             request.setValue("_ss_route=sbx", forHTTPHeaderField: "Cookie")
         }
         
         request.setValue("msdkDemo", forHTTPHeaderField: "X-Client-Id")
+        request.setValue("iOS", forHTTPHeaderField: "X-Mob-OS")
+        request.setValue(Bundle.main.bundleIdentifier, forHTTPHeaderField: "X-Mob-App")
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            request.setValue(version, forHTTPHeaderField: "X-Mob-App-Ver")
+        }
+        if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+            request.setValue(build, forHTTPHeaderField: "X-Mob-App-Build")
+        }
 
         let fail = { (_ error: Any?, _ statusCode: StatusCode) in
             DispatchQueue.main.async {

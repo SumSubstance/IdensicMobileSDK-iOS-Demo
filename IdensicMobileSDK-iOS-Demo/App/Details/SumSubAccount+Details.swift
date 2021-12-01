@@ -44,6 +44,7 @@ extension SumSubAccount {
         Storage.set(apiUrl, for: .apiUrl)
         Storage.set(isSandbox, for: .isSandbox)
         Storage.set(YourBackend.bearerToken, for: .bearerToken)
+        Storage.set(YourBackend.client, for: .client)
     }
     
     static func restore() {
@@ -65,6 +66,9 @@ extension SumSubAccount {
         }
         if let bearerToken = Storage.getString(.bearerToken) {
             YourBackend.bearerToken = bearerToken
+        }
+        if let client = Storage.getString(.client) {
+            YourBackend.client = client
         }
     }
 }

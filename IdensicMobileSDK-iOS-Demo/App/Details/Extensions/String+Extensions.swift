@@ -25,7 +25,7 @@ extension String {
     
     var urlQueryEncoded: String {
         
-        return addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? self
+        return addingPercentEncoding(withAllowedCharacters: .percentEncondingSet) ?? self
     }
     
     static func random(len: Int) -> String {
@@ -35,4 +35,14 @@ extension String {
         
         return String(random)
     }
+}
+
+extension CharacterSet {
+    
+    fileprivate static var percentEncondingSet: CharacterSet = {
+        
+        var set = CharacterSet.urlQueryAllowed
+        set.remove(charactersIn: "/+")
+        return set
+    }()
 }

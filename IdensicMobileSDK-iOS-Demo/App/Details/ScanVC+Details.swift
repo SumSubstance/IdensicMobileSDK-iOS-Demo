@@ -34,9 +34,10 @@ class ScanVC: UIViewController {
     struct QRCode: Codable {
         let url: String
         let t: String
-        let sandbox: Bool?
+        let sbx: Int?
+        let c: String?
         
-        var isSandbox: Bool { sandbox ?? false }
+        var isSandbox: Bool { (sbx ?? 0) > 0 }
     }
     
     // MARK: - Lifecycle
@@ -123,6 +124,7 @@ class ScanVC: UIViewController {
         SumSubAccount.apiUrl = qrCode.url
         SumSubAccount.isSandbox = qrCode.isSandbox
         YourBackend.bearerToken = qrCode.t
+        YourBackend.client = qrCode.c
         
         showStatusProcessing { [weak self] in
             
