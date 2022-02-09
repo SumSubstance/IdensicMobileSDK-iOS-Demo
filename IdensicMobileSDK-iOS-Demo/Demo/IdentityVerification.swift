@@ -41,7 +41,10 @@ struct IdentityVerification {
         //
         log("Initialization")
         
-        // Specify the environment you work with
+        // Most likely you will integrate the sdk using the production/sandbox environment,
+        // thus there will be no need to pass the `environment` parameter at the initialization method.
+        // This way the sdk will work in the production or in the sandbox environment
+        // depend on which one the `accessToken` has been generated on.
         let environment: SNSEnvironment = SumSubAccount.isTestEnvironment ? .test : .production
         
         sdk = SNSMobileSDK(

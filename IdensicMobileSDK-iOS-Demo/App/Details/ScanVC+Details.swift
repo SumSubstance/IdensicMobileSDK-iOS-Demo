@@ -393,6 +393,8 @@ class ScanVC: UIViewController {
     }
 }
 
+// MARK: - AVCaptureMetadataOutputObjectsDelegate
+
 extension ScanVC: AVCaptureMetadataOutputObjectsDelegate {
     
     internal func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

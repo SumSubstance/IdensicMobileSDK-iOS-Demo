@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.18.3</string>
+	<string>1.19.1</string>
 	<key>CFBundleVersion</key>
-	<string>1.18.3.1</string>
+	<string>1.19.1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
@@ -28,6 +28,8 @@
 	<string>Time to record a video</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Let us pick a photo</string>
+	<key>NFCReaderUsageDescription</key>
+	<string>Let us scan the document for more precise recognition</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -64,5 +66,11 @@
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+	<array>
+		<string>A0000002471001</string>
+		<string>A0000002472001</string>
+		<string>00000000000000</string>
+	</array>
 </dict>
 </plist>

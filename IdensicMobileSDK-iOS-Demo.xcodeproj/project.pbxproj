@@ -52,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		BD965E1282348C5B554EE545 /* Pods-IdensicMobileSDK-iOS-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdensicMobileSDK-iOS-Demo.release.xcconfig"; path = "Target Support Files/Pods-IdensicMobileSDK-iOS-Demo/Pods-IdensicMobileSDK-iOS-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		D808FE3D279B1B2300E48183 /* IdensicMobileSDK-iOS-Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "IdensicMobileSDK-iOS-Demo.entitlements"; sourceTree = "<group>"; };
 		D816AD26249CBAC400C70B17 /* Language+Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Language+Details.swift"; sourceTree = "<group>"; };
 		D816AD28249CC4C100C70B17 /* LoginVC+Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginVC+Details.swift"; sourceTree = "<group>"; };
 		D816AD2C249CC8E600C70B17 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -202,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				D8C6723724474BEF00DB7309 /* Info.plist */,
+				D808FE3D279B1B2300E48183 /* IdensicMobileSDK-iOS-Demo.entitlements */,
 				D8C6722924474BEE00DB7309 /* AppDelegate.swift */,
 				D8C6722B24474BEE00DB7309 /* SceneDelegate.swift */,
 				D8C6723424474BEF00DB7309 /* LaunchScreen.storyboard */,
@@ -570,6 +572,7 @@
 			baseConfigurationReference = E8B121B0D6B1277B1FC6A44E /* Pods-IdensicMobileSDK-iOS-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "IdensicMobileSDK-iOS-Demo/App/Support/IdensicMobileSDK-iOS-Demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2M257Z2B9X;
 				INFOPLIST_FILE = "${TARGET_NAME}/App/Support/Info.plist";
@@ -590,6 +593,7 @@
 			baseConfigurationReference = BD965E1282348C5B554EE545 /* Pods-IdensicMobileSDK-iOS-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "IdensicMobileSDK-iOS-Demo/App/Support/IdensicMobileSDK-iOS-Demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2M257Z2B9X;
 				INFOPLIST_FILE = "${TARGET_NAME}/App/Support/Info.plist";
