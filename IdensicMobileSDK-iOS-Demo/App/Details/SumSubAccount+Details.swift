@@ -10,7 +10,14 @@ import Foundation
 
 extension SumSubAccount {
             
-    static var isFlowBased: Bool = true
+    static let isFlowBased: Bool = {
+        #if USE_FLOW_BASED_INITIALIZATION
+        return true
+        #else
+        return false
+        #endif
+    }()
+
     static var isTestEnvironment: Bool { return SumSubEnvironment(rawValue: apiUrl) == .test }
     
     static var isAuthorized: Bool { return YourBackend.bearerToken != nil }
@@ -38,7 +45,6 @@ extension SumSubAccount {
     
     static func save() {
         
-        Storage.set(isFlowBased, for: .isFlowBased)
         Storage.set(username, for: .username)
         Storage.set(password, for: .password)
         Storage.set(apiUrl, for: .apiUrl)
@@ -49,9 +55,6 @@ extension SumSubAccount {
     
     static func restore() {
         
-        if let isFlowBased = Storage.getBool(.isFlowBased) {
-            SumSubAccount.isFlowBased = isFlowBased
-        }
         if username.isEmpty, let username = Storage.getString(.username) {
             SumSubAccount.username = username
         }

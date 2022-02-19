@@ -9,10 +9,11 @@
 import Foundation
 import IdensicMobileSDK
 
+#if USE_FLOW_BASED_INITIALIZATION
 extension IdentityVerification {
     //
     // WARNING:
-    // Pay attention please that the flow-based initialization will be removed in the near future,
+    // Pay attention please that the flow-based initialization is deprecated and will be removed in the near future,
     // please adopt the level-based one, see IdentityVerification.swift for details.
     //
     static func launch(
@@ -92,3 +93,4 @@ extension IdentityVerification {
         
     }
 }
+#endif

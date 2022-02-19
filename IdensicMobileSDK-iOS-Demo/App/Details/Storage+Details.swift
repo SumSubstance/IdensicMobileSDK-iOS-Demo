@@ -24,7 +24,6 @@ class Storage: UserDefaults {
         case levelName
         case externalActionId
         case lang
-        case isFlowBased
         case isSandbox
     }
     

@@ -309,11 +309,13 @@ extension DemoVC {
     
     public func launchFlowBasedVerification() {
         
+        #if USE_FLOW_BASED_INITIALIZATION
         IdentityVerification.launch(
             from: self,
             for: YourUser.current,
             flowName: Storage.flowName ?? "",
             locale: Language.locale
         )
+        #endif
     }
 }

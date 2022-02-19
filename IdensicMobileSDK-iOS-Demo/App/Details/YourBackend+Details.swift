@@ -50,14 +50,7 @@ extension YourBackend {
             
             checkIsAuthorized { error, isAuthorized in
                 
-                if !isAuthorized {
-                    onComplete(error, isAuthorized)
-                    return
-                }
-                
-                loadSettings(error) { error in
-                    onComplete(error, isAuthorized)
-                }
+                onComplete(error, isAuthorized)
             }
             return;
         }
@@ -68,9 +61,7 @@ extension YourBackend {
                 self.bearerToken = bearerToken
             }
             
-            loadSettings(error) { error in
-                onComplete(error, SumSubAccount.isAuthorized)
-            }
+            onComplete(error, SumSubAccount.isAuthorized)
         }
     }
 
@@ -283,33 +274,6 @@ extension YourBackend {
             }
             else {
                 onComplete(NSError("Unable to get applicant flows"), nil)
-            }
-        }
-        
-    }
-    
-    // MARK: - Settings
-    
-    private static func loadSettings(_ prevError: Error? = nil, onComplete: @escaping (Error?) -> Void) {
-        
-        if let error = prevError {
-            onComplete(error)
-            return
-        }
-        
-        get("/resources/featureFlags/frontend") { (error, json, statusCode) in
-            
-            if let error = error {
-                onComplete(error)
-                return
-            }
-            
-            if let json = json {
-                let levelsRevamp = json["levelsRevamp"] as? Bool ?? false
-                SumSubAccount.isFlowBased = !levelsRevamp
-                onComplete(nil)
-            } else {
-                onComplete(NSError("Unable to get feature flags"))
             }
         }
     }
