@@ -46,28 +46,15 @@ extension YourBackend {
             return
         }
 
-        guard SumSubAccount.hasCredentials else {
+        checkIsAuthorized { error, isAuthorized in
             
-            checkIsAuthorized { error, isAuthorized in
-                
-                onComplete(error, isAuthorized)
-            }
-            return;
-        }
-        
-        getBearerToken { (error, bearerToken) in
-
-            if error == nil {
-                self.bearerToken = bearerToken
-            }
-            
-            onComplete(error, SumSubAccount.isAuthorized)
+            onComplete(error, isAuthorized)
         }
     }
 
     static func checkIsAuthorized(onComplete: @escaping (Error?, Bool) -> Void) {
                 
-        guard SumSubAccount.isAuthorized else {
+        guard SumSubAccount.hasBearerToken else {
             onComplete(nil, false)
             return
         }
@@ -126,40 +113,6 @@ extension YourBackend {
     // MARK: - SumSub API
     
     private static var sumsubApiURL: URL? { return URL(string: SumSubAccount.apiUrl) }
-    
-    private static func getBearerToken(onComplete: @escaping (Error?, BearerToken?) -> Void) {
-        
-        let path = "/resources/auth/login?ttlInSecs=86400"
-        
-        guard let url = URL(string: path, relativeTo: sumsubApiURL) else {
-            onComplete(NSError("Unable to create URLRequest for path: \(path)"), nil)
-            return
-        }
-        
-        let basicAuth = Data("\(SumSubAccount.username):\(SumSubAccount.password)".utf8).base64EncodedString()
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("Basic \(basicAuth)", forHTTPHeaderField: "Authorization")
-        
-        send(request) { (error, json, statusCode) in
-            
-            if statusCode == 401 {
-                log("Not authorized")
-                onComplete(NSError("Wrong credentials"), nil)
-            }
-            else if let error = error {
-                onComplete(error, nil)
-            }
-            else if let token = json?["payload"] as? String {
-                log("Authorized" + (SumSubAccount.isSandbox ? " (sandbox)" : ""))
-                onComplete(nil, token)
-            }
-            else {
-                onComplete(NSError("Unable to get bearer token"), nil)
-            }
-        }
-    }
     
     static func getApplicantLevels(forNewUser: Bool, onComplete: @escaping (Error?, [ApplicantLevel]?) -> Void) {
         
@@ -296,7 +249,7 @@ extension YourBackend {
         request("POST", path, json, onComplete: onComplete)
     }
     
-    private static func request(_ method: String, _ path: String, _ json: Json? = nil, isRetring: Bool = false, onComplete: @escaping ResponseCallback) {
+    private static func request(_ method: String, _ path: String, _ json: Json? = nil, onComplete: @escaping ResponseCallback) {
         
         guard sumsubApiURL != nil, let url = URL(string: path, relativeTo: sumsubApiURL) else {
             onComplete(NSError("Unable to create URLRequest for path: \(path)"), nil, 0)
@@ -306,21 +259,24 @@ extension YourBackend {
         var request = URLRequest(url: url)
         request.httpMethod = method
         
-        send(request, json) { (error, json, statusCode) in
-            
-            if statusCode != 401 || isRetring || !SumSubAccount.hasCredentials {
-                onComplete(error, json, statusCode)
-                return
-            }
-            
-            logIntoSumSubAccount { (loginError, isAuthorized) in
-                if loginError != nil {
-                    onComplete(error, json, statusCode)
-                } else {
-                    self.request(method, path, json, isRetring: true, onComplete: onComplete)
-                }
-            }
+        if let bearerToken = bearerToken {
+            request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
         }
+        else if let signature = sign(method: method, uri: path) {
+            request.setValue(signature.token, forHTTPHeaderField: "X-App-Token")
+            request.setValue(signature.ts, forHTTPHeaderField: "X-App-Access-Ts")
+            request.setValue(signature.sig, forHTTPHeaderField: "X-App-Access-Sig")
+        }
+        
+        if let client = client {
+            request.setValue(client.urlQueryEncoded, forHTTPHeaderField: "X-Impersonate")
+        }
+        
+        if SumSubAccount.isSandbox {
+            request.setValue("_ss_route=sbx", forHTTPHeaderField: "Cookie")
+        }
+
+        send(request, json, onComplete: onComplete)
     }
         
     private static func send(_ request: URLRequest, _ json: Json? = nil, onComplete: @escaping ResponseCallback) {
@@ -332,18 +288,6 @@ extension YourBackend {
         if let json = json {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: [])
-        }
-        
-        if request.allHTTPHeaderFields?["Authorization"] == nil, let bearerToken = bearerToken {
-            request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
-        }
-        
-        if let client = client {
-            request.setValue(client.urlQueryEncoded, forHTTPHeaderField: "X-Impersonate")
-        }
-        
-        if SumSubAccount.isSandbox {
-            request.setValue("_ss_route=sbx", forHTTPHeaderField: "Cookie")
         }
         
         request.setValue("msdkDemo", forHTTPHeaderField: "X-Client-Id")
@@ -420,6 +364,20 @@ extension YourBackend {
             }
             
         }.resume()
+    }
+    
+    private static func sign(method: String, uri: String) -> (token: String, ts: String, sig: String)? {
+        
+        guard let appToken = SumSubAccount.appToken,
+              let secretKey = SumSubAccount.secretKey
+        else {
+            return nil
+        }
+        
+        let ts = String(Int(Date().timeIntervalSince1970))
+        let sig = "\(ts)\(method)\(uri)".hmac256(key: secretKey)
+                
+        return (token: appToken, ts: ts, sig: sig)
     }
     
     // MARK: - Logging

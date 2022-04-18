@@ -20,8 +20,9 @@ extension SumSubAccount {
 
     static var isTestEnvironment: Bool { return SumSubEnvironment(rawValue: apiUrl) == .test }
     
-    static var isAuthorized: Bool { return YourBackend.bearerToken != nil }
-    static var hasCredentials: Bool { return !username.isEmpty || !password.isEmpty }
+    static var isAuthorized: Bool { return hasBearerToken || hasAppToken }
+    static var hasBearerToken: Bool { return YourBackend.bearerToken != nil }
+    static var hasAppToken: Bool { return appToken != nil && !appToken!.isEmpty && secretKey != nil && !secretKey!.isEmpty }
     
     static func linkTo(_ path: String) -> URL? {
         
@@ -45,8 +46,6 @@ extension SumSubAccount {
     
     static func save() {
         
-        Storage.set(username, for: .username)
-        Storage.set(password, for: .password)
         Storage.set(apiUrl, for: .apiUrl)
         Storage.set(isSandbox, for: .isSandbox)
         Storage.set(YourBackend.bearerToken, for: .bearerToken)
@@ -55,12 +54,6 @@ extension SumSubAccount {
     
     static func restore() {
         
-        if username.isEmpty, let username = Storage.getString(.username) {
-            SumSubAccount.username = username
-        }
-        if password.isEmpty, let password = Storage.getString(.password) {
-            SumSubAccount.password = password
-        }
         if let apiUrl = Storage.getString(.apiUrl) {
             SumSubAccount.apiUrl = apiUrl
         }
@@ -73,6 +66,19 @@ extension SumSubAccount {
         if let client = Storage.getString(.client) {
             YourBackend.client = client
         }
+    }
+    
+    private static let initialApiUrl = apiUrl
+    private static let initialSandbox = isSandbox
+    
+    static func useAppToken() {
+        
+        apiUrl = initialApiUrl
+        isSandbox = initialSandbox
+        YourBackend.bearerToken = nil
+        YourBackend.client = nil
+        
+        save()
     }
 }
 

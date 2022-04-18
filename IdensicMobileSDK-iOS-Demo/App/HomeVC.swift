@@ -15,8 +15,9 @@ extension HomeVC {
         push(ScanVC.controller)
     }
     
-    @IBAction func signIn(_ sender: Any) {
+    @IBAction func proceedWithAppToken(_ sender: Any) {
         
-        push(LoginVC.controller)
+        SumSubAccount.useAppToken()
+        App.showDemo()
     }
 }

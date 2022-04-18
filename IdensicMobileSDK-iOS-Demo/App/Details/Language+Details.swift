@@ -25,17 +25,23 @@ extension Language {
     }
     
     var identifier: String {
-        if self == .system {
+        switch self {
+        case .system:
             return Locale.current.identifier
-        } else {
+        case .preferred:
+            return Locale.preferredLanguages.first ?? Locale.current.identifier
+        default:
             return rawValue
         }
     }
     
     var name: String {
-        if self == .system {
-            return "System Language"
-        } else {
+        switch self {
+        case .system:
+            return "Current Locale"
+        case .preferred:
+            return "Preferred Language"
+        default:
             return Locale(identifier: identifier).localizedString(forLanguageCode: rawValue)?.capitalized ?? rawValue
         }
     }

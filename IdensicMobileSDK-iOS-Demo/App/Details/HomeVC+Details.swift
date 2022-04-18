@@ -12,6 +12,9 @@ class HomeVC: UIViewController {
     
     static var controller: UIViewController { return App.storyboard.instantiateViewController(withIdentifier: "HomeVC") }
 
+    @IBOutlet weak var appTokenButton: SecondaryButton!
+    @IBOutlet weak var appTokenButtonHeight: NSLayoutConstraint!
+    
     // MARK: - Lifecycle
     
     required init?(coder: NSCoder) {
@@ -24,6 +27,11 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .bgColor
+        
+        if !SumSubAccount.hasAppToken {
+            appTokenButton.alpha = 0
+            appTokenButtonHeight.constant = 8
+        }
     }
     
     // MARK: - Actions

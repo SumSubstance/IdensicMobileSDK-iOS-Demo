@@ -100,7 +100,7 @@ struct IdentityVerification {
         //
         // Change `logLevel` to see more info in the console (the default level is `.error`)
         //
-        sdk.logLevel = .error
+        sdk.logLevel = .info
         
         // MARK: logHandler
         //

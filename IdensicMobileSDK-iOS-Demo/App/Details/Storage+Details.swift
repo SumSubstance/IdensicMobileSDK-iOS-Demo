@@ -15,8 +15,6 @@ class Storage: UserDefaults {
     
     enum Key: String {
         case apiUrl
-        case username
-        case password
         case bearerToken
         case client
         case userId

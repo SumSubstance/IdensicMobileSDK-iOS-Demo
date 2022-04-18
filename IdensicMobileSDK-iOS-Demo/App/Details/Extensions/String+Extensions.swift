@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CommonCrypto
 
 extension String {
     
@@ -26,6 +27,14 @@ extension String {
     var urlQueryEncoded: String {
         
         return addingPercentEncoding(withAllowedCharacters: .percentEncondingSet) ?? self
+    }
+    
+    func hmac256(key: String) -> String {
+        
+        var digest = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+        CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA256), key, key.count, self, self.count, &digest)
+        
+        return Data(digest).map({ String(format: "%02hhx", $0) }).joined()
     }
     
     static func random(len: Int) -> String {

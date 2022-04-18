@@ -73,6 +73,12 @@ class ScanVC: UIViewController {
         
         guard isMovingToParent else { return }
         
+#if targetEnvironment(simulator)
+        self.stopActivity()
+        self.showAlert("In order to run the demo on the Simulator, please put your App Token in SumSubAccount.swift") { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+#else
         ensurePermissions { (isGranted) in
             if isGranted {
                 self.setupCaptureSession()
@@ -85,6 +91,7 @@ class ScanVC: UIViewController {
                 }
             }
         }
+#endif
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -117,9 +124,6 @@ class ScanVC: UIViewController {
     func logIntoSumSubAccount(with qrCode: QRCode, onSuccess: @escaping () -> Void) {
         
         App.playSuccess()
-        
-        SumSubAccount.username = ""
-        SumSubAccount.password = ""
         
         SumSubAccount.apiUrl = qrCode.url
         SumSubAccount.isSandbox = qrCode.isSandbox

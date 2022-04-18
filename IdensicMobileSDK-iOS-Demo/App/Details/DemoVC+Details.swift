@@ -46,11 +46,11 @@ class DemoVC: UIViewController {
                                                queue: .main)
         { (notification) in
 
-            guard SumSubAccount.isAuthorized, !SumSubAccount.hasCredentials else { return }
+            guard SumSubAccount.hasBearerToken else { return }
             
             YourBackend.checkIsAuthorized { (error, isAuthorized) in
                 
-                if error != nil || isAuthorized || !SumSubAccount.isAuthorized { return }
+                if error != nil || isAuthorized || !SumSubAccount.hasBearerToken { return }
                 
                 YourBackend.bearerToken = nil
 

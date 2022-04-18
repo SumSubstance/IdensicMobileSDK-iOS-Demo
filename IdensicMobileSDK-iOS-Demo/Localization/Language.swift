@@ -10,6 +10,8 @@ import Foundation
 
 enum Language: String, Selectable {
     case system
+    case preferred
     case en
-    case ru
+    case de
+    case fr
 }

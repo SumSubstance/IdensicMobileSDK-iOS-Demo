@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mOf-5f-73s">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mOf-5f-73s">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +27,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="few-6f-EJn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="664" y="-43"/>
+            <point key="canvasLocation" x="577" y="-44"/>
         </scene>
         <!--Home-->
         <scene sceneID="GwB-C5-AXr">
@@ -76,7 +76,7 @@ the demo app</string>
                                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
-                                                <fragment content="or sign in with credentials">
+                                                <fragment content="or proceed with app token">
                                                     <attributes>
                                                         <color key="NSColor" red="0.2467459142" green="0.28932920099999998" blue="0.3607919812" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <font key="NSFont" size="15" name="HelveticaNeue"/>
@@ -86,7 +86,7 @@ the demo app</string>
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="signIn:" destination="RVP-ft-HfI" eventType="touchUpInside" id="bUY-Ab-w1P"/>
+                                            <action selector="proceedWithAppToken:" destination="RVP-ft-HfI" eventType="touchUpInside" id="rKd-95-LRM"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -111,157 +111,14 @@ the demo app</string>
                         <barButtonItem key="backBarButtonItem" title=" " id="p6m-bf-TR4"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="appTokenButton" destination="lAe-Mh-i3J" id="VwQ-nd-wj1"/>
+                        <outlet property="appTokenButtonHeight" destination="Srk-nw-DPI" id="Dm0-5n-sUl"/>
                         <segue destination="h6Z-lY-aVj" kind="show" identifier="scanSegue" id="9O0-aw-Ypc"/>
-                        <segue destination="PUh-rj-SkQ" kind="show" identifier="loginSegue" id="AeJ-G7-yKR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nt7-Bo-GWx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1553" y="-43"/>
-        </scene>
-        <!--Login-->
-        <scene sceneID="QA8-J2-VYG">
-            <objects>
-                <tableViewController storyboardIdentifier="LoginVC" title="Login" id="PUh-rj-SkQ" customClass="LoginVC" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" id="7ug-1i-IaG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <sections>
-                            <tableViewSection headerTitle="" id="shU-d8-y6r">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="140" id="H0A-oQ-MNF">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="140"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H0A-oQ-MNF" id="GcL-Mj-uHd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oi1-cd-bPs">
-                                                    <rect key="frame" x="47.5" y="8" width="280" height="116"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="JiV-VM-pAq"/>
-                                                        <constraint firstAttribute="width" constant="280" id="eiC-By-2df"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Oi1-cd-bPs" firstAttribute="centerX" secondItem="GcL-Mj-uHd" secondAttribute="centerX" id="C7X-DX-CDj"/>
-                                                <constraint firstItem="Oi1-cd-bPs" firstAttribute="top" secondItem="GcL-Mj-uHd" secondAttribute="top" constant="8" id="EIn-GM-w75"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Oi1-cd-bPs" secondAttribute="bottom" constant="16" id="XOm-Kp-PzB"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="yN9-6M-gZX">
-                                        <rect key="frame" x="0.0" y="184.5" width="375" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yN9-6M-gZX" id="Gx7-5x-gPu">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, enter your credentials" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYk-1c-seu" customClass="Label" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                                    <rect key="frame" x="26" y="53" width="274" height="24"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
-                                                    <color key="textColor" red="0.329138875" green="0.36386123300000001" blue="0.43530133370000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="qYk-1c-seu" firstAttribute="leading" secondItem="Gx7-5x-gPu" secondAttribute="leading" constant="26" id="TMc-j2-fRN"/>
-                                                <constraint firstItem="qYk-1c-seu" firstAttribute="bottom" secondItem="Gx7-5x-gPu" secondAttribute="bottomMargin" constant="-12" id="Xqg-hB-X7n"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qYk-1c-seu" secondAttribute="trailing" constant="20" id="odX-rY-PKS"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="232" id="TIw-St-0ge">
-                                        <rect key="frame" x="0.0" y="284.5" width="375" height="232"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TIw-St-0ge" id="gUb-fw-Js2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="232"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rOd-93-3pp">
-                                                    <rect key="frame" x="20" y="0.0" width="335" height="212"/>
-                                                    <subviews>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Environment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PZ7-jt-sgJ" customClass="DropdownField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="32"/>
-                                                            <color key="backgroundColor" red="0.96056312320000004" green="0.96470874549999996" blue="0.96871882679999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="32" id="t5Q-LY-Act"/>
-                                                            </constraints>
-                                                            <color key="textColor" red="0.41176470588235292" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                            <textInputTraits key="textInputTraits"/>
-                                                            <connections>
-                                                                <action selector="selectEnvironment:" destination="PUh-rj-SkQ" eventType="touchDown" id="uVX-SU-Q2e"/>
-                                                            </connections>
-                                                        </textField>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Gdw-Z0-6z8" customClass="TextField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="42" width="335" height="50"/>
-                                                            <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="czK-x7-20E"/>
-                                                            </constraints>
-                                                            <color key="textColor" red="0.41176470588235292" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="username"/>
-                                                        </textField>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OtC-PZ-Aht" customClass="TextField" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="102" width="335" height="50"/>
-                                                            <color key="backgroundColor" red="0.96056312320000004" green="0.96470874549999996" blue="0.96871882679999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="86E-iP-uX0"/>
-                                                            </constraints>
-                                                            <color key="textColor" red="0.41161170600000002" green="0.41572976109999998" blue="0.41567909720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                            <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
-                                                        </textField>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxP-ZR-Cmc" customClass="Button" customModule="IdensicMobileSDK_iOS_Demo" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="162" width="335" height="50"/>
-                                                            <color key="backgroundColor" red="0.090196078431372548" green="0.21568627450980393" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="h70-GH-lIM"/>
-                                                            </constraints>
-                                                            <state key="normal" title="Log in"/>
-                                                            <connections>
-                                                                <action selector="logIn:" destination="PUh-rj-SkQ" eventType="touchUpInside" id="VdT-XY-dUI"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="rOd-93-3pp" firstAttribute="leading" secondItem="gUb-fw-Js2" secondAttribute="leading" constant="20" id="CKS-IP-cXq"/>
-                                                <constraint firstAttribute="trailing" secondItem="rOd-93-3pp" secondAttribute="trailing" constant="20" id="gLI-w8-NhM"/>
-                                                <constraint firstItem="rOd-93-3pp" firstAttribute="centerY" secondItem="gUb-fw-Js2" secondAttribute="centerY" constant="-10" id="xOs-BM-pHi"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="PUh-rj-SkQ" id="LOi-5Z-umi"/>
-                            <outlet property="delegate" destination="PUh-rj-SkQ" id="gOG-H9-iUI"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="oau-du-NZI">
-                        <barButtonItem key="backBarButtonItem" title="Login" id="ymf-JQ-1tY"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="environmentField" destination="PZ7-jt-sgJ" id="ypy-l5-A8H"/>
-                        <outlet property="loginButton" destination="RxP-ZR-Cmc" id="RWI-83-9PB"/>
-                        <outlet property="passwordField" destination="OtC-PZ-Aht" id="QyV-DY-jwu"/>
-                        <outlet property="usernameField" destination="Gdw-Z0-6z8" id="E2n-P6-wAx"/>
-                        <segue destination="VXM-Pf-24f" kind="show" identifier="demoSegue" id="hdD-6W-eFR"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XxO-12-WRs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2531" y="345"/>
         </scene>
         <!--Scan-->
         <scene sceneID="mg7-9H-O6c">
@@ -365,7 +222,7 @@ the demo app</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XMp-DC-jso" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2531.25" y="-407.74647887323943"/>
+            <point key="canvasLocation" x="2538" y="-44"/>
         </scene>
         <!--Demo-->
         <scene sceneID="riD-aQ-2ES">
@@ -489,9 +346,6 @@ the demo app</string>
             <point key="canvasLocation" x="3512" y="-43"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="hdD-6W-eFR"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="logo" width="512" height="512"/>
         <image name="qr-code-icon" width="45" height="45"/>
