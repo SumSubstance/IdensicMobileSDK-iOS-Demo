@@ -5,8 +5,8 @@ source 'https://github.com/SumSubstance/Specs.git'
 
 target 'IdensicMobileSDK-iOS-Demo' do
 
-  pod 'IdensicMobileSDK', '1.19.4'
-  pod 'IdensicMobileSDK/MRTDReader', '1.19.4'
+  pod 'IdensicMobileSDK', '1.19.5'
+  pod 'IdensicMobileSDK/MRTDReader', '1.19.5'
 
   pod 'Toast-Swift', '5.0.1'
   pod 'IQKeyboardManagerSwift', '6.5.5'
