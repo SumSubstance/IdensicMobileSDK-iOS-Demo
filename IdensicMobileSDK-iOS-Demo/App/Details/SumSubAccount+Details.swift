@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IdensicMobileSDK
 
 extension SumSubAccount {
             
@@ -18,7 +19,13 @@ extension SumSubAccount {
         #endif
     }()
 
-    static var isTestEnvironment: Bool { return SumSubEnvironment(rawValue: apiUrl) == .test }
+    static var isRegularIntegration: Bool {
+        return SumSubEnvironment(rawValue: apiUrl) == .prod
+    }
+
+    static func getEnvironment() -> SNSEnvironment {
+        return isRegularIntegration ? .production : SNSEnvironment(apiUrl)
+    }
     
     static var isAuthorized: Bool { return hasBearerToken || hasAppToken }
     static var hasBearerToken: Bool { return YourBackend.bearerToken != nil }

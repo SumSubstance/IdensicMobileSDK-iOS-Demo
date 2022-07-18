@@ -45,7 +45,7 @@ struct IdentityVerification {
         // thus there will be no need to pass the `environment` parameter at the initialization method.
         // This way the sdk will work in the production or in the sandbox environment
         // depend on which one the `accessToken` has been generated on.
-        let environment: SNSEnvironment = SumSubAccount.isTestEnvironment ? .test : .production
+        let environment = SumSubAccount.getEnvironment()
         
         sdk = SNSMobileSDK(
             accessToken: accessToken,
@@ -205,6 +205,11 @@ struct IdentityVerification {
             
             switch event.eventType {
             
+            case .applicantLoaded:
+                if let event = event as? SNSEventApplicantLoaded {
+                    log("onEvent: Applicant [\(event.applicantId)] has been loaded")
+                }
+                
             case .stepInitiated:
                 if let event = event as? SNSEventStepInitiated {
                     log("onEvent: Step [\(event.idDocSetType)] has been initiated")

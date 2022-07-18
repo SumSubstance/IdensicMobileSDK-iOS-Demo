@@ -17,7 +17,7 @@ struct SumSubAccount {
     // For the demo purposes we have implemented the corresponding routines on the client side, but please,
     // in the real life use your backend and never store your credentials on the devices.
     //
-    static var apiUrl: String = SumSubEnvironment.test.apiUrl
+    static var apiUrl: String = SumSubEnvironment.prod.apiUrl
     static var isSandbox: Bool = false
     static let appToken: String? = nil
     static let secretKey: String? = nil
