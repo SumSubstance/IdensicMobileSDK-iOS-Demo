@@ -220,6 +220,11 @@ struct IdentityVerification {
                     log("onEvent: Step [\(event.idDocSetType)] has been \(event.isCancelled ? "cancelled" : "fulfilled")")
                 }
                 
+            case .analytics:
+                if let event = event as? SNSEventAnalytics {
+                    print("onEvent: Analytics event [\(event.eventName)] has occured with payload=\(event.eventPayload ?? [:])")
+                }
+
             @unknown default:
                 log("onEvent: eventType=[\(event.description(for: event.eventType))] payload=\(event.payload)")
             }
