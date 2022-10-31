@@ -116,59 +116,6 @@ extension YourBackend {
     
     static func getApplicantLevels(forNewUser: Bool, onComplete: @escaping (Error?, [ApplicantLevel]?) -> Void) {
         
-        let dispatchGroup = DispatchGroup()
-        
-        var errors = [Error]()
-        var levels = [ApplicantLevel]()
-        var flows = [ApplicantFlow]()
-        
-        dispatchGroup.enter()
-        getApplicantLevels { error, results in
-            if let error = error {
-                errors.append(error)
-            } else {
-                levels = results ?? []
-            }
-            dispatchGroup.leave()
-        }
-        
-        dispatchGroup.enter()
-        getApplicantFlows { error, results in
-            if let error = error {
-                errors.append(error)
-            } else {
-                flows = results ?? []
-            }
-            dispatchGroup.leave()
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            if let error = errors.first {
-                onComplete(error, nil)
-                return
-            }
-            
-            let levels = levels.map { level -> ApplicantLevel in
-                if let flow = flows.first(where: { $0.id == level.flowId }) {
-                    return ApplicantLevel(name: level.name, flowId: level.flowId, isAction: flow.isAction)
-                } else {
-                    return level
-                }
-            } .filter {
-                if forNewUser {
-                    return !$0.isAction
-                } else {
-                    return true
-                }
-            }
-            
-            onComplete(nil, levels)
-        }
-        
-    }
-    
-    private static func getApplicantLevels(onComplete: @escaping (Error?, [ApplicantLevel]?) -> Void) {
-        
         get("/resources/applicants/-/levels") { (error, json, statusCode) in
             
             if let error = error {
@@ -183,8 +130,10 @@ extension YourBackend {
                 let levels = items.map { (item) -> ApplicantLevel in
                     return ApplicantLevel(
                         name: item["name"] as? LevelName ?? "noname",
-                        flowId: item["msdkFlowId"] as? String
+                        isAction: item["type"] as? String ?? "" == "actions"
                     )
+                } .filter { level in
+                    return forNewUser ? !level.isAction : true
                 }
                 
                 onComplete(nil, levels)
