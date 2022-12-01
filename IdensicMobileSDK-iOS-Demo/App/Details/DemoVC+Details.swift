@@ -82,11 +82,6 @@ class DemoVC: UIViewController {
         levelDropdown.text = hasCurrent ? Storage.levelName : nil
         levelDropdown.isEnabled = hasCurrent
 
-        if SumSubAccount.isFlowBased {
-            levelDropdown.placeholder = "Applicant Flow"
-            levelDropdown.text = hasCurrent ? Storage.flowName : nil
-        }
-
         langDropdown.text = hasCurrent ? Language.current.name : nil
         langDropdown.isEnabled = hasCurrent
         
@@ -101,8 +96,6 @@ class DemoVC: UIViewController {
     
     @IBAction func makeNewUser(_ sender: Any) {
         
-        if SumSubAccount.isFlowBased { return makeNewFlowBasedUser(sender) }
-        
         selectLevel(sender, forNewUser: true) { level in
             self.log("New user has been created with userId: \(YourUser.userId ?? "<null>"), levelName: \(level.name)")
             YourUser.makeNewUser(with: level)
@@ -112,8 +105,6 @@ class DemoVC: UIViewController {
     
     @IBAction func selectLevel(_ sender: Any) {
         
-        if SumSubAccount.isFlowBased { return selectFlow(sender) }
-        
         selectLevel(sender, forNewUser: false) { level in
             self.log("New level has been selected for userId: \(YourUser.userId ?? "<null>"), levelName: \(level.name)")
             YourUser.setLevel(level)
@@ -122,8 +113,6 @@ class DemoVC: UIViewController {
     }
     
     @IBAction func launchVerification(_ sender: Any) {
-        
-        if SumSubAccount.isFlowBased { return launchFlowBasedVerification() }
         
         launchVerification()
     }
@@ -230,92 +219,4 @@ class DemoVC: UIViewController {
         print(Date.formatted, "[DemoVC] " + message)
     }
     
-}
-
-// MARK: - Flow-based way
-
-extension DemoVC {
-    
-    private func makeNewFlowBasedUser(_ sender: Any) {
-        
-        selectFlow(sender, forNewUser: true) { flow in
-            self.log("New user has been created with userId: \(YourUser.userId ?? "<null>"), flowName: \(flow.name)")
-            YourUser.makeNewUser(with: flow)
-            self.redraw(animated: true)
-        }
-    }
-    
-    private func selectFlow(_ sender: Any) {
-        
-        selectFlow(sender, forNewUser: false) { flow in
-            self.log("New flow has been selected for userId: \(YourUser.userId ?? "<null>"), flowName: \(flow.name)")
-            YourUser.setFlow(flow)
-            self.redraw(animated: true)
-        }
-    }
-    
-    private func selectFlow(_ sender: Any, forNewUser: Bool = false, onSelect: @escaping (ApplicantFlow) -> Void) {
-        
-        if forNewUser {
-            userButton.startActivity()
-        } else {
-            levelDropdown.startActivity()
-        }
-        
-        YourBackend.getApplicantFlows(forNewUser: forNewUser) { [weak self] (error, flows) in
-            
-            guard let self = self else { return }
-            
-            self.userButton.stopActivity()
-            self.levelDropdown.stopActivity()
-            
-            if let error = error {
-                
-                if App.checkAutorizationStatus() {
-                    self.showAlert(for: error)
-                }
-                return
-            }
-            
-            guard let flows = flows, flows.count > 0 else {
-                self.showNoFlowsAlert()
-                return
-            }
-            
-            self.showSelect(from: sender, flows, "Select Applicant Flow") { (flow) in
-                
-                if let flow = flow {
-                    onSelect(flow)
-                }
-            }
-        }
-    }
-    
-    private func showNoFlowsAlert() {
-        
-        let alert = AlertController(
-            message: "It seems no applicant flows are defined yet. Please, set up one or more with the Dashboard:\n\nSDK Integrations -> Verification Flows"
-        )
-        
-        alert.addAction("Dashboard") {
-            if let url = SumSubAccount.linkTo("/checkus#/sdkIntegrations/flows") {
-                UIApplication.shared.openURL(url)
-            }
-        }
-        alert.addCancelAction()
-        
-        alert.present(from: self)
-    }
-    
-    public func launchFlowBasedVerification() {
-        
-        #if USE_FLOW_BASED_INITIALIZATION
-        IdentityVerification.launch(
-            from: self,
-            for: YourUser.current,
-            flowName: Storage.flowName ?? "",
-            locale: Language.locale
-        )
-        #endif
-    }
 }

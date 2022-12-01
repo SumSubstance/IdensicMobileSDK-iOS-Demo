@@ -11,14 +11,6 @@ import IdensicMobileSDK
 
 extension SumSubAccount {
             
-    static let isFlowBased: Bool = {
-        #if USE_FLOW_BASED_INITIALIZATION
-        return true
-        #else
-        return false
-        #endif
-    }()
-
     static var isRegularIntegration: Bool {
         return SumSubEnvironment(rawValue: apiUrl) == .prod
     }

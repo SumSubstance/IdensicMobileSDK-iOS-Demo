@@ -25,7 +25,6 @@ struct SumSubAccount {
 
 enum SumSubEnvironment: String, Selectable {
     
-    case test = "https://test-api.sumsub.com"
     case prod = "https://api.sumsub.com"
     case sandbox = "sandbox"
 }

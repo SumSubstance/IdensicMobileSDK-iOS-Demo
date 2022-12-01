@@ -32,7 +32,6 @@ extension YourUser {
     static func save() {
         
         Storage.set(Storage.levelName, for: .levelName)
-        Storage.set(Storage.flowName, for: .flowName)
 
         if let user = current {
             Storage.set(user.userId, for: .userId)
@@ -43,7 +42,6 @@ extension YourUser {
     static func restore() {
         
         Storage.levelName = Storage.getString(.levelName)
-        Storage.flowName = Storage.getString(.flowName)
         
         guard let userId = Storage.getString(.userId) else {
             return
@@ -53,24 +51,5 @@ extension YourUser {
             userId: userId,
             externalActionId: Storage.getString(.externalActionId)
         )
-    }
-}
-
-// MARK: - Flow-based way
-
-extension YourUser {
-    
-    static func makeNewUser(with flow: ApplicantFlow) {
-        
-        current = YourUser(userId: "demo-user-" + String.random(len: 8))
-        setFlow(flow)
-    }
-    
-    static func setFlow(_ flow: ApplicantFlow) {
-        
-        current?.externalActionId = flow.isAction ? "demo-action-" + String.random(len: 8) : nil
-        Storage.flowName = flow.name
-        Storage.levelName = nil
-        save()
     }
 }

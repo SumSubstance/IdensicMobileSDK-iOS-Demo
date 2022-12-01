@@ -9,22 +9,13 @@
 import Foundation
 import IdensicMobileSDK
 
-typealias FlowName = String
 typealias LevelName = String
 typealias AccessToken = String
 typealias BearerToken = String
 
 struct ApplicantLevel: Stringable {
     var name: LevelName
-    var flowId: String?
     var isAction: Bool = false
-    var toString: String? { return name }
-}
-
-struct ApplicantFlow: Stringable {
-    var name: FlowName
-    var id: String
-    var isAction: Bool
     var toString: String? { return name }
 }
 
@@ -140,42 +131,6 @@ extension YourBackend {
             }
             else {
                 onComplete(NSError("Unable to get applicant levels"), nil)
-            }
-        }
-    }
-    
-    static func getApplicantFlows(forNewUser: Bool = false, onComplete: @escaping (Error?, [ApplicantFlow]?) -> Void) {
-        
-        get("/resources/sdkIntegrations/flows") { (error, json, statusCode) in
-            
-            if let error = error {
-                onComplete(error, nil)
-                return
-            }
-
-            if
-                let list = json?["list"] as? Json,
-                let items = list["items"] as? [Json]
-            {
-                let flows = items.filter { (item) in
-                    if let target = item["target"] as? String {
-                        let type = item["type"] as? String ?? ""
-                        return target == "msdk" && (forNewUser ? type != "actions" : true)
-                    } else {
-                        return false
-                    }
-                } .map { (item) -> ApplicantFlow in
-                    return ApplicantFlow(
-                        name: item["name"] as? FlowName ?? "noname",
-                        id: item["id"] as? String ?? "noid",
-                        isAction: item["type"] as? String ?? "" == "actions"
-                    )
-                }
-                
-                onComplete(nil, flows)
-            }
-            else {
-                onComplete(NSError("Unable to get applicant flows"), nil)
             }
         }
     }

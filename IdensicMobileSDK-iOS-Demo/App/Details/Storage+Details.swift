@@ -11,14 +11,12 @@ import Foundation
 class Storage: UserDefaults {
     
     static var levelName: LevelName?
-    static var flowName: FlowName?
     
     enum Key: String {
         case apiUrl
         case bearerToken
         case client
         case userId
-        case flowName
         case levelName
         case externalActionId
         case lang
