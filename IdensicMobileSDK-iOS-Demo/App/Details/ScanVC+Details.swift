@@ -85,7 +85,7 @@ class ScanVC: UIViewController {
             } else {
                 self.showAlert("The application doesn't have permission to use the camera, please change the privacy settings") {
                     if let url = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.openURL(url)
+                        UIApplication.shared.open(url)
                     }
                     self.navigationController?.popViewController(animated: true)
                 }

@@ -165,7 +165,7 @@ class DemoVC: UIViewController {
         
         alert.addAction("Dashboard") {
             if let url = SumSubAccount.linkTo("/checkus#/sdkIntegrations/levels") {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url)
             }
         }
         alert.addCancelAction()

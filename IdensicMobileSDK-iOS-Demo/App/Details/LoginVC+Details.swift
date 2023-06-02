@@ -112,12 +112,7 @@ class LoginVC: UITableViewController {
             return super.tableView(tableView, heightForRowAt: indexPath)
         }
         
-        var availableHeight: CGFloat = 0
-        if #available(iOS 11.0, *) {
-            availableHeight = tableView.safeAreaLayoutGuide.layoutFrame.height
-        } else {
-            availableHeight = tableView.frame.height
-        }
+        let availableHeight = tableView.safeAreaLayoutGuide.layoutFrame.height
         
         return Layout.firstRowHeight + availableHeight - Layout.initialHeight
     }
