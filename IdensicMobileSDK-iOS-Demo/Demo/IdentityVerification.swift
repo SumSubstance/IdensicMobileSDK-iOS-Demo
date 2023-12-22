@@ -221,9 +221,11 @@ struct IdentityVerification {
                 }
                 
             case .analytics:
-                if let event = event as? SNSEventAnalytics {
-                    log("onEvent: Analytics event [\(event.eventName)] has occured with payload=\(event.eventPayload ?? [:])")
-                }
+                // Uncomment to see the details
+                // if let event = event as? SNSEventAnalytics {
+                //     log("onEvent: Analytics event [\(event.eventName)] has occured with payload=\(event.eventPayload ?? [:])")
+                // }
+                break
 
             @unknown default:
                 log("onEvent: eventType=[\(event.description(for: event.eventType))] payload=\(event.payload)")
