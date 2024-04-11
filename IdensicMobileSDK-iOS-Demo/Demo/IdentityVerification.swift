@@ -138,14 +138,14 @@ struct IdentityVerification {
         
         // MARK: actionResultHandler
         //
-        // An optional way to get notified when an action's result has arrived from the backend.
+        // An optional way to get notified when a Face Auth action's result has arrived from the backend.
         // The user sees the "Processing..." screen at this moment.
         //
         sdk.actionResultHandler { (sdk, result, onComplete) in
             
-            log("actionResultHandler: actionId=\(result.actionId) answer=\(result.answer ?? "<none>")")
+            log("Face Auth action result handler: actionId=\(result.actionId) answer=\(result.answer ?? "<none>")")
             
-            // you are allowed to process the result asynchronously, just don't forget to call `onComplete` when you finished,
+            // You are allowed to process the result asynchronously, just don't forget to call `onComplete` when you finished,
             // you could pass `.cancel` to force the user interface to be closed, or `.continue` to proceed as usual
             onComplete(.continue)
         }
@@ -191,7 +191,7 @@ struct IdentityVerification {
                 description = "Applicant has been approved"
                 
             case .actionCompleted:
-                description = "Applicant action has been completed"
+                description = "Face Auth action has been completed (see `sdk.actionResult` for details"
             }
             
             log("onStatusDidChange: [\(prevStatusDesc)] -> [\(lastStatusDesc)] \(description)")
@@ -247,9 +247,9 @@ struct IdentityVerification {
             switch sdk.status {
             case .actionCompleted:
                 if let result = sdk.actionResult {
-                    description = "Last action result: actionId=\(result.actionId) answer=\(result.answer ?? "<none>")"
+                    description = "Face Auth action result: actionId=\(result.actionId) answer=\(result.answer ?? "<none>")"
                 } else {
-                    description = "The action was cancelled"
+                    description = "Face Auth action was cancelled"
                 }
                     
             default:
