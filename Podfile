@@ -1,4 +1,4 @@
-SDK_VERSION = '1.35.0'
+SDK_VERSION = '1.35.1'
 IOS_VERSION = '12.2'
 
 platform :ios, IOS_VERSION
