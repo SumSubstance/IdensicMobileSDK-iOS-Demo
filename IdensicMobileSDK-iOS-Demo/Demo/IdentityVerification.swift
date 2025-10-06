@@ -136,19 +136,6 @@ struct IdentityVerification {
             mainVC.presentingViewController?.dismiss(animated: true, completion: nil)
         }
         
-        // MARK: actionResultHandler
-        //
-        // An optional way to get notified when a Face Auth action's result has arrived from the backend.
-        // The user sees the "Processing..." screen at this moment.
-        //
-        sdk.actionResultHandler { (sdk, result, onComplete) in
-            
-            log("Face Auth action result handler: actionId=\(result.actionId) answer=\(result.answer ?? "<none>")")
-            
-            // You are allowed to process the result asynchronously, just don't forget to call `onComplete` when you finished,
-            // you could pass `.cancel` to force the user interface to be closed, or `.continue` to proceed as usual
-            onComplete(.continue)
-        }
     }
         
     static func setupCallbacks() {
@@ -190,8 +177,6 @@ struct IdentityVerification {
             case .approved:
                 description = "Applicant has been approved"
                 
-            case .actionCompleted:
-                description = "Face Auth action has been completed (see `sdk.actionResult` for details"
             }
             
             log("onStatusDidChange: [\(prevStatusDesc)] -> [\(lastStatusDesc)] \(description)")
@@ -242,23 +227,11 @@ struct IdentityVerification {
             let lastStatusDesc = sdk.description(for: sdk.status)
             let failReasonDesc = sdk.description(for: sdk.failReason)
             
-            var description: String
-            
-            switch sdk.status {
-            case .actionCompleted:
-                if let result = sdk.actionResult {
-                    description = "Face Auth action result: actionId=\(result.actionId) answer=\(result.answer ?? "<none>")"
-                } else {
-                    description = "Face Auth action was cancelled"
-                }
-                    
-            default:
-                description = "Identity verification status is "
-                if sdk.isFailed {
-                    description += "[\(lastStatusDesc):\(failReasonDesc)] \(sdk.verboseStatus)"
-                } else {
-                    description += "[\(lastStatusDesc)]"
-                }
+            var description = "Identity verification status is "
+            if sdk.isFailed {
+                description += "[\(lastStatusDesc):\(failReasonDesc)] \(sdk.verboseStatus)"
+            } else {
+                description += "[\(lastStatusDesc)]"
             }
             
             log("onDidDismiss: \(description)")
