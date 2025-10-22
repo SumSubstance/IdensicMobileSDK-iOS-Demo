@@ -1,4 +1,4 @@
-SDK_VERSION = '1.38.1'
+SDK_VERSION = '1.39.0'
 IOS_VERSION = '12.2'
 
 platform :ios, IOS_VERSION
@@ -11,7 +11,7 @@ target 'IdensicMobileSDK-iOS-Demo' do
   pod 'IdensicMobileSDK', SDK_VERSION
   pod 'IdensicMobileSDK/MRTDReader', SDK_VERSION
   pod 'IdensicMobileSDK/VideoIdent', SDK_VERSION
-  pod 'IdensicMobileSDK/EID', SDK_VERSION
+#  pod 'IdensicMobileSDK/EID', SDK_VERSION
 
   pod 'Toast-Swift', '5.0.1'
 end
