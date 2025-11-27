@@ -1,5 +1,5 @@
-SDK_VERSION = '1.39.1'
-IOS_VERSION = '12.2'
+SDK_VERSION = '1.40.0'
+IOS_VERSION = '13.0'
 
 platform :ios, IOS_VERSION
 
@@ -13,7 +13,7 @@ target 'IdensicMobileSDK-iOS-Demo' do
   pod 'IdensicMobileSDK/VideoIdent', SDK_VERSION
 #  pod 'IdensicMobileSDK/EID', SDK_VERSION
 
-  pod 'Toast-Swift', '5.0.1'
+  pod 'Toast-Swift', '5.1.1', :inhibit_warnings => true
 end
 
 post_install do |installer|

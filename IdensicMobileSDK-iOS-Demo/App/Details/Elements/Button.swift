@@ -21,7 +21,7 @@ class Button: UIButton {
     }
     fileprivate var highlightedBgColor: UIColor?
 
-    private lazy var activityIndicator = UIActivityIndicatorView(style: .white)
+    private lazy var activityIndicator = UIActivityIndicatorView(style: .medium)
     
     override func awakeFromNib() {
         super.awakeFromNib()

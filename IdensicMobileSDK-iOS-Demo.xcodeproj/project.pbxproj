@@ -270,6 +270,7 @@
 				D8C6722324474BEE00DB7309 /* Frameworks */,
 				D8C6722424474BEE00DB7309 /* Resources */,
 				F51697C617B603C1F2B7E18E /* [CP] Embed Pods Frameworks */,
+				95BB9D5DCA06105D7D648711 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -286,8 +287,9 @@
 		D8C6721E24474BEE00DB7309 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1610;
 				ORGANIZATIONNAME = "Sum & Substance";
 				TargetAttributes = {
 					D8C6722524474BEE00DB7309 = {
@@ -349,6 +351,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95BB9D5DCA06105D7D648711 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IdensicMobileSDK-iOS-Demo/Pods-IdensicMobileSDK-iOS-Demo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IdensicMobileSDK-iOS-Demo/Pods-IdensicMobileSDK-iOS-Demo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IdensicMobileSDK-iOS-Demo/Pods-IdensicMobileSDK-iOS-Demo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F51697C617B603C1F2B7E18E /* [CP] Embed Pods Frameworks */ = {
@@ -562,7 +581,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2M257Z2B9X;
 				INFOPLIST_FILE = "${TARGET_NAME}/App/Support/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -583,7 +602,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2M257Z2B9X;
 				INFOPLIST_FILE = "${TARGET_NAME}/App/Support/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

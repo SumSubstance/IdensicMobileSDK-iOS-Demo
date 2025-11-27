@@ -14,7 +14,7 @@ class DropdownField: TextField, UITextFieldDelegate {
         static let rightRectInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 16)
     }
 
-    private lazy var activityIndicator = UIActivityIndicatorView(style: .white)
+    private lazy var activityIndicator = UIActivityIndicatorView(style: .medium)
     private lazy var dropdownImageView = UIImageView(image: UIImage(named: "dropdown"))
 
     override func awakeFromNib() {

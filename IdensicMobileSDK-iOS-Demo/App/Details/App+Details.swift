@@ -60,7 +60,7 @@ extension App {
     
     static func showToast(_ message: String?) {
         
-        guard let message = message, let canvas = UIApplication.shared.keyWindow else {
+        guard let message = message, let canvas = window else {
             return
         }
         
@@ -150,7 +150,7 @@ extension App {
             return topVC;
         }
         
-        return findTopVC(from: UIApplication.shared.keyWindow?.rootViewController)
+        return findTopVC(from: window?.rootViewController)
     }
 
     // MARK: - Sounds
