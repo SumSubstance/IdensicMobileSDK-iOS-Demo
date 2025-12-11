@@ -1,4 +1,4 @@
-SDK_VERSION = '1.40.1'
+SDK_VERSION = '1.40.2'
 IOS_VERSION = '13.0'
 
 platform :ios, IOS_VERSION
@@ -9,6 +9,7 @@ source 'https://github.com/SumSubstance/Specs.git'
 target 'IdensicMobileSDK-iOS-Demo' do
 
   pod 'IdensicMobileSDK', SDK_VERSION
+  pod 'IdensicMobileSDK/Fisherman', SDK_VERSION
   pod 'IdensicMobileSDK/MRTDReader', SDK_VERSION
   pod 'IdensicMobileSDK/VideoIdent', SDK_VERSION
 #  pod 'IdensicMobileSDK/EID', SDK_VERSION
