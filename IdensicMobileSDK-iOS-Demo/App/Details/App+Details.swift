@@ -85,9 +85,7 @@ extension App {
     static func showGlobalAlert(_ message: String, actionHandler: ((UIWindow) -> Void)? = nil) {
         
         let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-        if #available(iOS 13.0, *) {
-            alertWindow.windowScene = self.window?.windowScene
-        }
+        alertWindow.windowScene = self.window?.windowScene
         alertWindow.windowLevel = UIWindow.Level.alert + 1
         alertWindow.tintColor = self.window?.tintColor
         alertWindow.rootViewController = UIViewController()
@@ -161,27 +159,19 @@ extension App {
     }
     
     static func playSuccess() {
-        if #available(iOS 13.0, *) {
-            playFeedbackNotification(.success)
-        } else {
-            playVibrate()
-        }
+
+        playFeedbackNotification(.success)
     }
-    
+
     static func playWarning() {
-        if #available(iOS 13.0, *) {
-            playFeedbackNotification(.warning)
-        } else {
-            playVibrate()
-        }
+
+        playFeedbackNotification(.warning)
     }
 
     // MARK: - Haptics
-    
-    @available(iOS 13.0, *)
+
     static let feedbackGenerator = UINotificationFeedbackGenerator()
 
-    @available(iOS 13.0, *)
     static func playFeedbackNotification(_ feedbacktype: UINotificationFeedbackGenerator.FeedbackType) {
         
         if CHHapticEngine.capabilitiesForHardware().supportsHaptics {

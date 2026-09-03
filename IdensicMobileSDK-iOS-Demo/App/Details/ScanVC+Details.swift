@@ -112,10 +112,8 @@ class ScanVC: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         
-        if #available(iOS 12.0, *) {
-            if previousTraitCollection == nil || traitCollection.userInterfaceStyle != previousTraitCollection!.userInterfaceStyle {
-                tintImages()
-            }
+        if previousTraitCollection == nil || traitCollection.userInterfaceStyle != previousTraitCollection!.userInterfaceStyle {
+            tintImages()
         }
     }
     

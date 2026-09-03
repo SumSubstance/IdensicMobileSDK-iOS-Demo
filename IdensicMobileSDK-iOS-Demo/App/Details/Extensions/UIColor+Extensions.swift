@@ -74,12 +74,8 @@ extension UIColor {
     
     private static func dynamicColor(_ lightColor: UIColor, _ darkColor: UIColor) -> UIColor {
 
-        if #available(iOS 13.0, *) {
-            return UIColor { (traitCollection) -> UIColor in
-                return traitCollection.userInterfaceStyle == .dark ? darkColor : lightColor
-            }
-        } else {
-            return lightColor
+        return UIColor { (traitCollection) -> UIColor in
+            return traitCollection.userInterfaceStyle == .dark ? darkColor : lightColor
         }
     }
 }
