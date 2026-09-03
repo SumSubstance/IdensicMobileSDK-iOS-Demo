@@ -1,0 +1,58 @@
+PODS:
+  - FingerprintPro (2.17.2)
+  - IdensicMobileSDK (1.46.1):
+    - IdensicMobileSDK/Default (= 1.46.1)
+  - IdensicMobileSDK/Core (1.46.1)
+  - IdensicMobileSDK/Default (1.46.1):
+    - IdensicMobileSDK/Core
+  - IdensicMobileSDK/Fisherman (1.46.1):
+    - FingerprintPro (< 3.0, >= 2.17.1)
+    - IdensicMobileSDK/Core
+  - IdensicMobileSDK/MRTDReader (1.46.1):
+    - IdensicMobileSDK/MRTDReader-latest
+  - IdensicMobileSDK/MRTDReader-core (1.46.1):
+    - IdensicMobileSDK/Core
+  - IdensicMobileSDK/MRTDReader-kinegram (1.46.1):
+    - IdensicMobileSDK/MRTDReader-core
+    - KinegramEmrtdConnector (< 3.0.0, >= 2.16.0)
+  - IdensicMobileSDK/MRTDReader-latest (1.46.1):
+    - IdensicMobileSDK/MRTDReader-kinegram
+    - OpenSSL-Universal (>= 3.1.5001)
+  - IdensicMobileSDK/VideoIdent (1.46.1):
+    - IdensicMobileSDK/VideoIdent-latest
+  - IdensicMobileSDK/VideoIdent-latest (1.46.1):
+    - IdensicMobileSDK/Core
+    - TwilioVideo (>= 5.8.2)
+  - KinegramEmrtdConnector (2.16.0)
+  - OpenSSL-Universal (3.6.2000)
+  - Toast-Swift (5.1.1)
+  - TwilioVideo (5.11.3)
+
+DEPENDENCIES:
+  - IdensicMobileSDK (= 1.46.1)
+  - IdensicMobileSDK/Fisherman (= 1.46.1)
+  - IdensicMobileSDK/MRTDReader (= 1.46.1)
+  - IdensicMobileSDK/VideoIdent (= 1.46.1)
+  - Toast-Swift (= 5.1.1)
+
+SPEC REPOS:
+  https://github.com/sumsub/Specs.git:
+    - IdensicMobileSDK
+  trunk:
+    - FingerprintPro
+    - KinegramEmrtdConnector
+    - OpenSSL-Universal
+    - Toast-Swift
+    - TwilioVideo
+
+SPEC CHECKSUMS:
+  FingerprintPro: 9a703bc7fb00413ffe5624bcbb07b62129f00ab6
+  IdensicMobileSDK: 55901f7749293cf02ea8c13f9ee04b1473c9214f
+  KinegramEmrtdConnector: 28312f30e2356f48b80ab280fade40e1f369b2e3
+  OpenSSL-Universal: ecee7b138fa75a74ecf00d7ffd248fb584739b9e
+  Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
+  TwilioVideo: 446b82f75575e0ee1e15a24afcea47f626bf8b50
+
+PODFILE CHECKSUM: 7b4e7c3830dbf91baaa8e7ce1efa9b07efdf4dbf
+
+COCOAPODS: 1.16.2

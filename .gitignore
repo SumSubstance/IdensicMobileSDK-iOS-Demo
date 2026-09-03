@@ -2,7 +2,6 @@
 .git_*
 *.podspec
 .DS_Store
-Podfile.lock
 
 ## Env
 Env

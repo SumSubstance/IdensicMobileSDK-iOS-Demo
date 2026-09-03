@@ -4,7 +4,7 @@ IOS_VERSION = '13.0'
 platform :ios, IOS_VERSION
 
 source 'https://cdn.cocoapods.org/'
-source 'https://github.com/SumSubstance/Specs.git'
+source 'https://github.com/sumsub/Specs.git'
 
 target 'IdensicMobileSDK-iOS-Demo' do
 
